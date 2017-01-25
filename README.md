@@ -5,6 +5,8 @@ John Bandelaria, Tong Chen
 
 # Week 1    Tong: @  John: $
 @Musical Guacamole flow chart presentation added to github
+
 @worked on sound for game (audiofilestream)
+
 $added pictures for use in game textures (chip and guac) to github
 
