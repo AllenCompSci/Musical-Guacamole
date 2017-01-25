@@ -15,3 +15,4 @@ $added pictures for use in game textures (chip and guac) to github
 
 $tested and played around with graphics.java code 
 
+@tried getting mp3 instead of wav to work (much more efficient in size)
