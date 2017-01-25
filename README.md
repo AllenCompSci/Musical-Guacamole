@@ -7,6 +7,7 @@ John Bandelaria, Tong Chen
 @$Musical Guacamole flow chart presentation added to github
 
 @worked and researched on sound for game (audioinputstream)
+ Link: http://stackoverflow.com/questions/953598/audio-volume-control-increase-or-decrease-in-java
 
 $added pictures for use in game textures (chip and guac) to github
 
