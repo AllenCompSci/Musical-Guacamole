@@ -3,4 +3,8 @@ John Bandelaria, Tong Chen
 
 (Read Me instructions 1 (#) at the begining of a line followed by space for Small Heading 2(#) for large font heading. Keep Weekly Progress in Read Me)
 
-# Week 1
+# Week 1    Tong: @  John: $
+@Musical Guacamole flow chart presentation added to github
+@worked on sound for game (audiofilestream)
+$added pictures for use in game textures (chip and guac) to github
+
