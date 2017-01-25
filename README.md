@@ -10,3 +10,4 @@ John Bandelaria, Tong Chen
 
 $added pictures for use in game textures (chip and guac) to github
 
+@$ analyzed block the pig code on the AllenCompSci repository to learn graphics
