@@ -24,3 +24,5 @@ $experimented with drawing and moving polygons
 # Week 2 
 
 @experimented using different decibel values with master gain in audioInputStream to change volume of sound.
+
+$more shapes and moving https://mathbits.com/MathBits/Java/Graphics/GraphingMethods.htm
