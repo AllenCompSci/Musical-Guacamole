@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.geom.*;
 
 
 class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
@@ -15,7 +16,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private boolean isRunning, isDone;
     private Image imgBuffer;
     private BufferedImage stone, grass, pig, dirt;
-    private TexturePaint stoneOcta, grassOcta, pigs;
+    private TexturePaint stoneOcta, grassOcta, pigs, guaca;
     private boolean change;
     @SuppressWarnings("unused")
     private Color BROWN;
@@ -24,6 +25,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle myRect;
     private Point current;
     private Rectangle asdf;
+    private Rectangle next;
+    
 
     public void setChange(boolean change) {
         this.change = change;
@@ -35,11 +38,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 
             stone = ImageIO.read(this.getClass().getResource("5717966_orig.jpg")); //picks the images used
-            grass = ImageIO.read(this.getClass().getResource("grass.png"));
+            grass = ImageIO.read(this.getClass().getResource("16.png"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
-            dirt = ImageIO.read(this.getClass().getResource("Meet-The-Original-Dab-Master-Video.jpg"));
+            dirt = ImageIO.read(this.getClass().getResource("guacccccccccccccc (1).jpg"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
+            guaca=new TexturePaint(dirt, new Rectangle(0,0,1920,1080));
             pigs = new TexturePaint(pig, new Rectangle(0, 0, 1920, 1080)); //sets the image as a paint, and then sets how big the image will be
 
 
@@ -56,6 +60,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         current = new Point(0,0); //starting point
         myRect = new Rectangle((int)current.getX(), (int)current.getY(), 200, 200);// x,y,h,w to move just change x and y, sets how big the underlying image is
         asdf= new Rectangle(100,100,300,300);
+        next=new Rectangle(600, 300, 400, 400);
         BROWN = new Color(139,69,19);
         frame = new JFrame();
         frame.addKeyListener(this);
@@ -84,38 +89,73 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 
         if(Key == KeyEvent.VK_UP){ // UP
-            if(myRect.getY()>(31)) {
-                myRect.setLocation((int) myRect.getX(), (int) myRect.getY() - 10); //how much it moves by
+            if(asdf.getY()>(31)) {
+                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 10); //how much it moves by
             }
             else {
-                myRect.setLocation((int) myRect.getX(), 30); //goes back to starting point
+                asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
             }
         }
         else if(Key == KeyEvent.VK_LEFT){
-            if(myRect.getX()>10) {
-                myRect.setLocation((int) myRect.getX() - 10, (int) myRect.getY());
+            if(asdf.getX()>10) {
+                asdf.setLocation((int) asdf.getX() - 10, (int) asdf.getY());
             }
             else {
-                myRect.setLocation(10, (int) myRect.getY());
+                asdf.setLocation(10, (int) asdf.getY());
             }
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
-            if(myRect.getY()<(int)(1080-myRect.getHeight()-10)) {
+            if(asdf.getY()<(int)(1080-asdf.getHeight()-10)) {
+                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 10);
+            }
+            else {
+                asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
+            }
+        }
+        else if(Key == KeyEvent.VK_RIGHT){
+            if(asdf.getX()<(int)(1920-asdf.getWidth()-10)) {
+                asdf.setLocation((int) asdf.getX() + 10, (int) asdf.getY());
+            }
+            else {
+                asdf.setLocation((int)(600-asdf.getWidth()-10), (int) asdf.getY());
+            }
+        }
+        else if(Key==KeyEvent.VK_W){
+        	if(myRect.getY()>(31)) {
+                myRect.setLocation((int)myRect.getX(), (int)myRect.getY() - 10); //how much it moves by
+            }
+            else {
+                myRect.setLocation((int)myRect.getX(), 30); //goes back to starting point
+            }
+        }
+        else if(Key==KeyEvent.VK_A){
+        	 if(myRect.getX()>10) {
+                 myRect.setLocation((int) myRect.getX() - 10, (int) myRect.getY());
+             }
+             else {
+                 myRect.setLocation(10, (int) myRect.getY());
+             }
+         }
+        else if(Key==KeyEvent.VK_S){
+        	if(myRect.getY()<(int)(1080-myRect.getHeight()-10)) {
                 myRect.setLocation((int) myRect.getX(), (int) myRect.getY() + 10);
             }
             else {
                 myRect.setLocation((int) myRect.getX(), (int)(950-myRect.getHeight()-10));
             }
         }
-        else if(Key == KeyEvent.VK_RIGHT){
-            if(myRect.getX()<(int)(1920-myRect.getWidth()-10)) {
-                myRect.setLocation((int) myRect.getX() + 10, (int) myRect.getY());
-            }
-            else {
-                myRect.setLocation((int)(600-myRect.getWidth()-10), (int) myRect.getY());
-            }
+        else if(Key==KeyEvent.VK_D){
+        	 if(myRect.getX()<(int)(1920-myRect.getWidth()-10)) {
+                 myRect.setLocation((int) myRect.getX() + 10, (int) myRect.getY());
+             }
+             else {
+                 myRect.setLocation((int)(600-myRect.getWidth()-10), (int) myRect.getY());
+             }
+         }
+        	
         }
-    }
+    
+    
 
 
     @Override
@@ -227,6 +267,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         g2d.fillRect((int)myRect.getX(), (int)myRect.getY(), (int)myRect.getWidth(), (int)myRect.getHeight()); //fills the rectangle in particular
         g2d.setColor(Color.BLUE); //sets the color of the outline of the rectangle
         g2d.drawPolygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
+        g2d.setPaint(stoneOcta); 
+        g2d.drawOval(25, 35, 25, 25);
+        g2d.setPaint(grassOcta);
+        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular //fills the rectangle in particular
         g2d.draw(asdf);
         Stroke old = g2d.getStroke();
         g2d.setStroke(new BasicStroke(3));
