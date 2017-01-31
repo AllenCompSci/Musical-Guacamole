@@ -91,6 +91,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         if(Key == KeyEvent.VK_UP){ // UP
             if(asdf.getY()>(31)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 10); //how much it moves by
+                next.setLocation((int)asdf.getX(), (int)asdf.getY()+100);
             }
             else {
                 asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
@@ -99,6 +100,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         else if(Key == KeyEvent.VK_LEFT){
             if(asdf.getX()>10) {
                 asdf.setLocation((int) asdf.getX() - 10, (int) asdf.getY());
+                next.setLocation((int)asdf.getX()+100, (int)asdf.getY());
             }
             else {
                 asdf.setLocation(10, (int) asdf.getY());
@@ -107,6 +109,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
             if(asdf.getY()<(int)(1080-asdf.getHeight()-10)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 10);
+                next.setLocation((int) asdf.getX(), (int) asdf.getY() - 100);
             }
             else {
                 asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
@@ -115,6 +118,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         else if(Key == KeyEvent.VK_RIGHT){
             if(asdf.getX()<(int)(1920-asdf.getWidth()-10)) {
                 asdf.setLocation((int) asdf.getX() + 10, (int) asdf.getY());
+                next.setLocation((int) asdf.getX() - 100, (int) asdf.getY());
             }
             else {
                 asdf.setLocation((int)(600-asdf.getWidth()-10), (int) asdf.getY());
@@ -268,6 +272,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         g2d.setColor(Color.BLUE); //sets the color of the outline of the rectangle
         g2d.drawPolygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
         g2d.setPaint(stoneOcta); 
+        g2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
+        g2d.draw(next);
         g2d.drawOval(25, 35, 25, 25);
         g2d.setPaint(grassOcta);
         g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular //fills the rectangle in particular
