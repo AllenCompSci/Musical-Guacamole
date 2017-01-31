@@ -13,14 +13,25 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class audioInputStream {
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		// TODO Auto-generated method stub
-		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-				  new File("mariachi.wav"));
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("mariachi.wav").getAbsoluteFile());
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			FloatControl gainControl = 
 				  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 			clip.start();
+			try {
+				Thread.sleep(10000);
+				gainControl.setValue(6.0206f);
+				Thread.sleep(10000);
+				gainControl.setValue(-10.0f);
+				Thread.sleep(10000);
+				gainControl.setValue(6.0206f);
+				Thread.sleep(10000);
+				gainControl.setValue(-10.0f);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 	}
 
 }
