@@ -3,7 +3,9 @@ John Bandelaria, Tong Chen
 
 (Read Me instructions 1 (#) at the begining of a line followed by space for Small Heading 2(#) for large font heading. Keep Weekly Progress in Read Me)
 
-# Week 1    Tong: @  John: $
+# Tong: @   John: $
+
+# Week 1
 @$Musical Guacamole flow chart presentation added to github
 
 @worked and researched on sound for game (audioinputstream)
@@ -18,3 +20,7 @@ $tested and played around with graphics.java code
 @tried getting mp3 instead of wav to work (much more efficient in size)
 
 $experimented with drawing and moving polygons 
+
+# Week 2 
+
+@experimented using different decibel values with master gain in audioInputStream to change volume of sound.
