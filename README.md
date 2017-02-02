@@ -28,3 +28,5 @@ $experimented with drawing and moving polygons
 $more shapes and moving https://mathbits.com/MathBits/Java/Graphics/GraphingMethods.htm, and moving based on hte players movements
 
 @was able to have music play at the same time as graphics in the driver using John's src and putting in audioInputStream
+
+$experimented and researched moving objects and hitboxes http://stackoverflow.com/questions/19629257/java-moving-an-object-across-the-screen
