@@ -32,3 +32,5 @@ $more shapes and moving https://mathbits.com/MathBits/Java/Graphics/GraphingMeth
 $experimented and researched moving objects and hitboxes http://stackoverflow.com/questions/19629257/java-moving-an-object-across-the-screen
 
 @used photoshop to try and get some good chip textures
+
+@looked at Galaga 2.0 graphics to see how to use variables and keylistener with draw to make the image move with the key clicks.
