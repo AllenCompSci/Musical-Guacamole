@@ -25,7 +25,9 @@ $experimented with drawing and moving polygons
 
 @experimented using different decibel values with master gain in audioInputStream to change volume of sound.
 
-$more shapes and moving https://mathbits.com/MathBits/Java/Graphics/GraphingMethods.htm, and moving based on hte players movements
+$more shapes and moving https://mathbits.com/MathBits/Java/Graphics/GraphingMethods.htm 
+
+$moving based on the players movements
 
 @was able to have music play at the same time as graphics in the driver using John's src and putting in audioInputStream
 
