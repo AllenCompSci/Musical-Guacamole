@@ -39,6 +39,6 @@ $experimented and researched moving objects and hitboxes http://stackoverflow.co
 
 ## Week 3
 
-$tried writing font, started on start screen, worked on worksheet
+$tried writing font, started on start screen, worked on worksheet, started working on actual screens used in the game
 
 @ worked on mouselistener, recording x and y, to be used for starting the game from the start menu
