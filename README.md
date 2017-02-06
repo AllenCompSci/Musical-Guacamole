@@ -36,3 +36,7 @@ $experimented and researched moving objects and hitboxes http://stackoverflow.co
 @used photoshop to try and get some good chip textures
 
 @looked at Galaga 2.0 graphics to see how to use variables and keylistener with draw to make the image move with the key clicks.
+
+## Week 3
+
+$tried writing font, started on start screen, worked on worksheet
