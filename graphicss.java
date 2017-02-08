@@ -15,7 +15,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public JFrame frame;
     private boolean isRunning, isDone;
     private Image imgBuffer;
-    private BufferedImage stone, grass, pig, dirt;
+    private BufferedImage stone, grass, pig, dirt, chip;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca;
     private boolean change;
     @SuppressWarnings("unused")
@@ -28,7 +28,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle next;
     private Polygon p;
     private int dx4, dx5, dy4, dy5;
-    private int Mx, My;
+    private int Mx, My, Mx2, My2;
     
 
     public void setChange(boolean change) {
@@ -38,9 +38,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private void loadImages() {
 
         try {
-
-
             stone = ImageIO.read(this.getClass().getResource("5717966_orig.jpg")); //picks the images used
+            chip = ImageIO.read(this.getClass().getResource("sample chip new.png"));
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
             dirt = ImageIO.read(this.getClass().getResource("sample chip new.png"));
@@ -57,10 +56,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
 
     public graphics(){
-    	dx4 = 450;
-    	dy4 = 600;
-    	dx5 = 650;
-    	dy5 = 890;
+    	dx4 = 400;
+    	dy4 = 400;
+    	dx5 = 600;
+    	dy5 = 600;
         loadImages();
         setChange(true);
         current = new Point(920,940); //starting point
@@ -186,7 +185,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
     	Mx = e.getXOnScreen();
+    	Mx2 = Mx + 200;
     	My = e.getYOnScreen();
+    	My2 = My + 200;
     }
 
     @Override
@@ -300,7 +301,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         Stroke old = g2d.getStroke();
         g2d.setStroke(new BasicStroke(3));
         //g2d.draw(myRect); //actually draws it
-        g2d.drawImage(grass, dx4, dy4, dx5, dy5, 0, 0, 650, 1033, null );
+        //g2d.drawImage(grass, dx4, dy4, dx5, dy5, 0, 0, 650, 1033, null );
+        //g2d.drawImage(chip, Mx, My, Mx2, My2, 0, 0, 4000, 3000, null );
+        g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
+        
         // System.out.println(Mx);
         // System.out.println(My);
         g2d.setStroke(old); 
