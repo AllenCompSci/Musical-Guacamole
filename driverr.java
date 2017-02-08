@@ -21,12 +21,6 @@ public class driver {
 			  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 		clip.start();
-		gainControl.setValue(6.0206f);
-		gainControl.setValue(4.032f);
-		gainControl.setValue(1.121f);
-		gainControl.setValue(5.2321f);
-		gainControl.setValue(3.992f);
-		gainControl.setValue(-10.0f);
     }
 
 }
