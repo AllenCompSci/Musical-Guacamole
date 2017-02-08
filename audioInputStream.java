@@ -1,4 +1,4 @@
-package dap;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -20,18 +20,24 @@ public class audioInputStream {
 				  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 			clip.start();
+			gainControl.setValue(-20.0f);
+			//music scaling tests
 			try {
 				Thread.sleep(10000);
-				gainControl.setValue(6.0206f);
+				gainControl.setValue(-30.0f);
 				Thread.sleep(10000);
-				gainControl.setValue(-10.0f);
+				gainControl.setValue(3.0f);
 				Thread.sleep(10000);
-				gainControl.setValue(6.0206f);
+				gainControl.setValue(-50.0f);//sound completely gone
 				Thread.sleep(10000);
-				gainControl.setValue(-10.0f);
+				gainControl.setValue(-40.0f);
+				Thread.sleep(10000);
 			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			gainControl.setValue(6.0206f);//sound max
+			
 	}
 
 }
