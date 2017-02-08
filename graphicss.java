@@ -28,6 +28,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle next;
     private Polygon p;
     private int dx4, dx5, dy4, dy5;
+    private int Mx, My;
     
 
     public void setChange(boolean change) {
@@ -184,12 +185,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+    	Mx = e.getXOnScreen();
+    	My = e.getYOnScreen();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+    	
     }
 
     @Override
@@ -275,7 +277,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         isDone = true;
     }
-
+    
     private void draw() {
 
         // TODO Auto-generated method stub
@@ -299,6 +301,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         g2d.setStroke(new BasicStroke(3));
         //g2d.draw(myRect); //actually draws it
         g2d.drawImage(grass, dx4, dy4, dx5, dy5, 0, 0, 650, 1033, null );
+        // System.out.println(Mx);
+        // System.out.println(My);
         g2d.setStroke(old); 
         if(isRunning) //isrunning is true
         g2d = (Graphics2D) frame.getGraphics();
