@@ -184,7 +184,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    	Mx = e.getXOnScreen();
+    	Mx = e.getXOnScreen();//mouse clicks
     	Mx2 = Mx + 200;
     	My = e.getYOnScreen();
     	My2 = My + 200;
