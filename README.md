@@ -43,4 +43,4 @@ $tried writing font, started on start screen, worked on worksheet, started worki
 
 @ worked on mouselistener, recording x and y, to be used for starting the game from the start menu (graphicss.java)
 
-@more audio scaling tests in audioinputstream
+@more audio scaling tests (audioInputStream.java)
