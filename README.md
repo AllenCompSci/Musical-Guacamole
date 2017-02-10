@@ -46,3 +46,5 @@ $tried writing font, started on start screen, worked on worksheet, started worki
 @more audio scaling tests (audioInputStream.java)
 
 $made start screen, created separate graphics class, tried moving rectangles
+
+@tried to get mouse clicking to work with screen and tried to make screen come before graphics start
