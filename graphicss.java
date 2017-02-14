@@ -14,6 +14,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public final Dimension SIZE = new Dimension(1920, 1080); //SETS WINDOW DIMENSION
     public JFrame frame;
     private boolean isRunning, isDone;
+    private boolean startgame = false;
     private Image imgBuffer;
     private BufferedImage stone, grass, pig, dirt, chip;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca;
@@ -21,7 +22,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     @SuppressWarnings("unused")
     private Color BROWN;
     @SuppressWarnings("unused")
-  
+    private int fontSize=300;
+    private Rectangle choice1;
+    private Rectangle choice2;
+    private Rectangle choice3;
     private Rectangle myRect;
     private Point current;
     private Rectangle asdf;
@@ -60,6 +64,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	dy4 = 400;
     	dx5 = 600;
     	dy5 = 600;
+    	choice1= new Rectangle(400,600,1000,100);
+	    choice2=new Rectangle(400,700,1000,100);
+	    choice3=new Rectangle(400,800,1000,100);
         loadImages();
         setChange(true);
         current = new Point(920,940); //starting point
@@ -184,7 +191,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    	Mx = e.getXOnScreen();//mouse clicks
+    	Mx = e.getXOnScreen();
     	Mx2 = Mx + 200;
     	My = e.getYOnScreen();
     	My2 = My + 200;
@@ -283,6 +290,29 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
         // TODO Auto-generated method stub
         Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
+        if(!startgame){
+        	g2d.setColor(Color.black);
+            g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+            g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
+            g2d.setColor(Color.green);
+            g2d.draw(choice1);
+            g2d.draw(choice2);
+            g2d.draw(choice3);
+            g2d.drawString("MUSICAL", 300, 300);
+            g2d.drawString("GUACAMOLE", 300,500);
+            g2d.setFont(new Font("chiller",Font.BOLD, 100));
+            g2d.drawString("PLAY", 800, 890);
+            g2d.drawString("CREDITS",740, 690);
+            g2d.drawString("OPTIONS",740,790);
+            g2d = (Graphics2D) frame.getGraphics();
+            if(isRunning) 
+            g2d = (Graphics2D) frame.getGraphics();
+            g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+            if(Mx > 400 && Mx < 1400 && My > 800 && My < 900){
+            	startgame = true;
+            }
+        }
+        else{
         g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
         g2d.setPaint(stoneOcta); 
@@ -305,12 +335,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         //g2d.drawImage(chip, Mx, My, Mx2, My2, 0, 0, 4000, 3000, null );
         g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
         
-        // System.out.println(Mx);
-        // System.out.println(My);
+        System.out.println(Mx);
+        System.out.println(My);
         g2d.setStroke(old); 
         if(isRunning) //isrunning is true
         g2d = (Graphics2D) frame.getGraphics();
         g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+        }
         g2d.dispose();
     }
 }
