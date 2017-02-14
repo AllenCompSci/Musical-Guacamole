@@ -53,4 +53,6 @@ $finished start screen, tried getting objects to move on its own for ai
 
 ## Week 4
 
-@continued working on start screen and mouse detection to start the game.
+@continued working on start screen and mouse detection to start the game
+
+$finally got objects to move, working on hit detection and getting objects to move back and forth
