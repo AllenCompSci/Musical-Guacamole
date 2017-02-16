@@ -56,3 +56,5 @@ $finished start screen, tried getting objects to move on its own for ai
 @continued working on start screen and mouse detection to start the game
 
 $finally got objects to move, working on hit detection and getting objects to move back and forth
+
+@finally finished mouse detection for screen (ditched using a separate "Screen" class for start menu, just integrated into "Graphics")
