@@ -60,3 +60,5 @@ $finally got objects to move, working on hit detection and getting objects to mo
 @finally finished mouse detection for screen (ditched using a separate "Screen" class for start menu, just integrated into "Graphics")
 
 @edited guacamole image in photoshop like the chip character, for enemies
+
+$with objects movement, got it to loop and bounce back and forth with boolean
