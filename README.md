@@ -58,3 +58,5 @@ $finished start screen, tried getting objects to move on its own for ai
 $finally got objects to move, working on hit detection and getting objects to move back and forth
 
 @finally finished mouse detection for screen (ditched using a separate "Screen" class for start menu, just integrated into "Graphics")
+
+@edited guacamole image in photoshop like the chip character, for enemies
