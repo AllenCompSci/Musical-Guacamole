@@ -6,8 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.geom.*;
-
+import java.awt.Component;
 
 class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public final String TITLE = "Musical Guac";
@@ -17,17 +16,26 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Image imgBuffer;
     private BufferedImage stone, grass, pig, dirt;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca;
-    private boolean change;
+    private boolean change, move;
     @SuppressWarnings("unused")
     private Color BROWN;
     @SuppressWarnings("unused")
-  
+    int w=100;
+    int h=10;
+    int speed=3;
+    int laxtx=0;
+    int x=laxtx+speed;
+    private int fontSize=100;
     private Rectangle myRect;
     private Point current;
     private Rectangle asdf;
     private Rectangle next;
+    private Rectangle tong;
     private Polygon p;
-    private int dx4, dx5, dy4, dy5;
+    public JFrame window;
+    private int dx, dy, df, dg;
+    
+    
     
 
     public void setChange(boolean change) {
@@ -56,15 +64,16 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
 
     public graphics(){
-    	dx4 = 450;
-    	dy4 = 600;
-    	dx5 = 650;
-    	dy5 = 890;
+
         loadImages();
         setChange(true);
-        current = new Point(920,940); //starting point
-        myRect = new Rectangle((int)current.getX(), (int)current.getY(), 700, 200);// x,y,h,w to move just change x and y, sets how big the underlying image is
+        dx=10;
+	    dy=700;
+	    df=100;
+        current = new Point(0,0); //starting point
+        myRect = new Rectangle((int)current.getX(), (int)current.getY(), 200, 200);// x,y,h,w to move just change x and y, sets how big the underlying image is
         asdf= new Rectangle(100,100,300,300);
+        tong= new Rectangle(100, 100, 200, 200);
         next=new Rectangle(600, 300, 400, 400);
         p=new Polygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
         BROWN = new Color(139,69,19);
@@ -79,10 +88,14 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         frame.setVisible(true);
         frame.setLayout(null);
         imgBuffer = frame.createImage(SIZE.width, SIZE.height);
-
+        move=true;
+       
     }
 
-    @Override
+
+   
+
+	@Override
     public void keyTyped(KeyEvent e) {
 
     }
@@ -95,49 +108,40 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 
         if(Key == KeyEvent.VK_UP){ // UP
-        	dy4 -= 10;
-            dy5 -= 10;
-
-           /* if(asdf.getY()>(31)) {
+            if(asdf.getY()>(31)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 10); //how much it moves by
                 next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
             }
             else {
                 asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
-            }*/
+            }
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	dx4 -= 10;
-            dx5 -= 10;
-            /*if(asdf.getX()>10) {
+            if(asdf.getX()>10) {
                 asdf.setLocation((int) asdf.getX() - 10, (int) asdf.getY());
                 next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
             }
             else {
                 asdf.setLocation(10, (int) asdf.getY());
-            }*/
+            }
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
-        	dy4 += 10;
-            dy5 += 10;
-          /*  if(asdf.getY()<(int)(1080-asdf.getHeight()-10)) {
+            if(asdf.getY()<(int)(1080-asdf.getHeight()-10)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 10);
                 next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
             }
             else {
                 asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
-            }*/
+            }
         }
         else if(Key == KeyEvent.VK_RIGHT){
-        	dx4 += 10;
-            dx5 += 10;
-          /* if(asdf.getX()<(int)(1920-asdf.getWidth()-10)) {
+            if(asdf.getX()<(int)(1920-asdf.getWidth()-10)) {
                 asdf.setLocation((int) asdf.getX() + 10, (int) asdf.getY());
                 next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
             }
             else {
                 asdf.setLocation((int)(600-asdf.getWidth()-10), (int) asdf.getY());
-            }*/
+            }
         }
         else if(Key==KeyEvent.VK_W){
         	if(myRect.getY()>(31)) {
@@ -261,14 +265,21 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     @Override
     public void run() {
         while(isRunning){
-
-            draw();
+        	
+        	
+           draw();
+           ryan();
+          
+          
 
             if(change){
+          
                 setChange(false);
-
+                
             }
-            try{Thread.sleep(50);}
+            try{
+            	Thread.sleep(50);
+            	}
             catch(InterruptedException ie){
                 ie.printStackTrace();
             }
@@ -278,31 +289,83 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
     private void draw() {
 
-        // TODO Auto-generated method stub
+        
         Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
         g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+        g2d.setColor(BROWN);
+        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
+        g2d.setColor(Color.green);
+        //g2d.drawString("MUSICAL", 800, 110);
+        //g2d.drawString("GUACAMOLE", 800,200);
         g2d.setPaint(stoneOcta); 
         g2d.fillRect((int)myRect.getX(), (int)myRect.getY(), (int)myRect.getWidth(), (int)myRect.getHeight()); //fills the rectangle in particular
         g2d.setColor(Color.BLUE); //sets the color of the outline of the rectangle
-        g2d.drawPolygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
-        g2d.setPaint(grassOcta);
-        g2d.fillPolygon(p);
+        //g2d.drawPolygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
+        //g2d.setPaint(grassOcta);
+        //g2d.fillPolygon(p);
         g2d.setPaint(stoneOcta); 
-        g2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
-        g2d.draw(next);
-        g2d.drawOval(25, 35, 25, 25);
+        //sasag2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
+        //g2d.draw(next);
+        //g2d.drawOval(25, 35, 25, 25);
         g2d.setPaint(guaca);
-        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular //fills the rectangle in particular
+        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
+        g2d.setPaint(Color.red);
         g2d.draw(asdf);
+        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
+        g2d.draw(tong);
         Stroke old = g2d.getStroke();
         g2d.setStroke(new BasicStroke(3));
-        //g2d.draw(myRect); //actually draws it
-        g2d.drawImage(grass, dx4, dy4, dx5, dy5, 0, 0, 650, 1033, null );
-        g2d.setStroke(old); 
-        if(isRunning) //isrunning is true
+        g2d.draw(myRect); //actually draws it
+        g2d.setStroke(old);
+        if(isRunning) 
         g2d = (Graphics2D) frame.getGraphics();
         g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         g2d.dispose();
     }
+    
+    
+    private void dickies(){
+        Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
+        g2d.setColor(Color.red);
+        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+        g2d.fillRect(0, 0, SIZE.width, SIZE.height);
+        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
+        g2d.setColor(Color.green);
+        g2d.drawString("MUSICAL", 800, 110);
+        g2d.drawString("GUACAMOLE", 800,200);
+        g2d = (Graphics2D) window.getGraphics();
+    }
+    private void ryan(){
+    	dg=((int)tong.getX());
+    	
+    	if(move==true){
+    	
+    	dg+=10;
+    	if(dg>490){
+    		move=false;
+    	}
+    	else{
+        tong.setLocation(dg, 100);
+    		}
+    	}
+    	else if(move==false){
+        	
+        dg-=10;
+        if(dg<10){
+        	move=true;
+        }
+        else{
+        tong.setLocation(dg, 100);
+         }
+    	 
+    }
+
 }
+}
+    
+
+    
+
+  
+
