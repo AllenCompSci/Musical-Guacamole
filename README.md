@@ -66,3 +66,5 @@ $with objects movement, got it to loop and bounce back and forth with boolean
 ## Week 5
 
 $worked on hitboxes with enemies and walls
+
+@worked on photoshop with guacamole(having trouble with making background transparent to make guacamole a circle) and making methods for the different screens at the beginning
