@@ -62,3 +62,7 @@ $finally got objects to move, working on hit detection and getting objects to mo
 @edited guacamole image in photoshop like the chip character, for enemies
 
 $with objects movement, got it to loop and bounce back and forth with boolean
+
+## Week 5
+
+
