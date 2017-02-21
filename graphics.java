@@ -31,9 +31,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle asdf;
     private Rectangle next;
     private Rectangle tong;
+    private Rectangle ayush;
     private Polygon p;
     public JFrame window;
-    private int dx, dy, df, dg;
+    private int tx, ty, df, dg,dx,dy,ax,ay;
     
     
     
@@ -72,8 +73,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	    df=100;
         current = new Point(0,0); //starting point
         myRect = new Rectangle((int)current.getX(), (int)current.getY(), 200, 200);// x,y,h,w to move just change x and y, sets how big the underlying image is
-        asdf= new Rectangle(100,100,300,300);
+        asdf= new Rectangle(1000,800,100,100);
         tong= new Rectangle(100, 100, 200, 200);
+        ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
         p=new Polygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
         BROWN = new Color(139,69,19);
@@ -109,7 +111,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
         if(Key == KeyEvent.VK_UP){ // UP
             if(asdf.getY()>(31)) {
-                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 10); //how much it moves by
+                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 20); //how much it moves by
                 next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
             }
             else {
@@ -118,7 +120,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         else if(Key == KeyEvent.VK_LEFT){
             if(asdf.getX()>10) {
-                asdf.setLocation((int) asdf.getX() - 10, (int) asdf.getY());
+                asdf.setLocation((int) asdf.getX() - 20, (int) asdf.getY());
                 next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
             }
             else {
@@ -126,8 +128,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
-            if(asdf.getY()<(int)(1080-asdf.getHeight()-10)) {
-                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 10);
+            if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
+                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 20);
                 next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
             }
             else {
@@ -135,12 +137,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(Key == KeyEvent.VK_RIGHT){
-            if(asdf.getX()<(int)(1920-asdf.getWidth()-10)) {
-                asdf.setLocation((int) asdf.getX() + 10, (int) asdf.getY());
+            if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
+                asdf.setLocation((int) asdf.getX() + 20, (int) asdf.getY());
                 next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
             }
             else {
-                asdf.setLocation((int)(600-asdf.getWidth()-10), (int) asdf.getY());
+                asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
             }
         }
         else if(Key==KeyEvent.VK_W){
@@ -269,6 +271,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	
            draw();
            ryan();
+           check();
           
           
 
@@ -278,7 +281,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 
             }
             try{
-            	Thread.sleep(50);
+            	Thread.sleep(5);
             	}
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -314,6 +317,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         g2d.draw(asdf);
         g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
         g2d.draw(tong);
+        g2d.fillRect((int)ayush.getX(), (int)ayush.getY(), (int)ayush.getWidth(), (int)ayush.getHeight());
+        g2d.draw(ayush);
         Stroke old = g2d.getStroke();
         g2d.setStroke(new BasicStroke(3));
         g2d.draw(myRect); //actually draws it
@@ -325,8 +330,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
     
     
-    private void dickies(){
-        Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
+    private void check(){
+       /* Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
         g2d.setColor(Color.red);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
         g2d.fillRect(0, 0, SIZE.width, SIZE.height);
@@ -335,28 +340,40 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         g2d.drawString("MUSICAL", 800, 110);
         g2d.drawString("GUACAMOLE", 800,200);
         g2d = (Graphics2D) window.getGraphics();
+        */
+    	tx=(int)tong.getX();
+    	ty=(int)tong.getY();
+    	dx=(int)asdf.getX();
+    	dy=(int)asdf.getY();
+    	ax=(int)ayush.getX();
+    	ay=(int)ayush.getY();
+    	if(((tx-200<dx&&dx<tx+200)&&(ty-200<dy&&dy<ty+200))||((ax-70<dx&&dx<ax+70)&&(ay-70<dy&&dy<ay+70))){
+    		isRunning=false;
+    	}
     }
     private void ryan(){
     	dg=((int)tong.getX());
-    	
+    	df=((int)ayush.getY());
     	if(move==true){
-    	
+    	df+=20;
     	dg+=10;
-    	if(dg>490){
+    	if(dg>1800||df>1000){
     		move=false;
     	}
     	else{
         tong.setLocation(dg, 100);
+        ayush.setLocation(700, df);
     		}
     	}
     	else if(move==false){
-        	
+        df-=20;
         dg-=10;
-        if(dg<10){
+        if(dg<0||df<0){
         	move=true;
         }
         else{
         tong.setLocation(dg, 100);
+        ayush.setLocation(700,df);
          }
     	 
     }
