@@ -65,4 +65,4 @@ $with objects movement, got it to loop and bounce back and forth with boolean
 
 ## Week 5
 
-
+$worked on hitboxes with enemies and walls
