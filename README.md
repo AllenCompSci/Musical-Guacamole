@@ -68,3 +68,5 @@ $with objects movement, got it to loop and bounce back and forth with boolean
 $worked on hitboxes with enemies and walls
 
 @worked on photoshop with guacamole(having trouble with making background transparent to make guacamole a circle) and making methods for the different screens at the beginning
+
+$refined hitboxes, tried getting color of each pixel to function as walls (TONG ABSENT)
