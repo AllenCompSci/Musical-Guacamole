@@ -16,7 +16,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Image imgBuffer;
     private BufferedImage stone, grass, pig, dirt;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca;
-    private boolean change, move;
+    private boolean change, move, wool;
     @SuppressWarnings("unused")
     private Color BROWN;
     @SuppressWarnings("unused")
@@ -32,6 +32,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle next;
     private Rectangle tong;
     private Rectangle ayush;
+    private Rectangle wall;
     private Polygon p;
     public JFrame window;
     private int tx, ty, df, dg,dx,dy,ax,ay;
@@ -73,10 +74,11 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	    df=100;
         current = new Point(0,0); //starting point
         myRect = new Rectangle((int)current.getX(), (int)current.getY(), 200, 200);// x,y,h,w to move just change x and y, sets how big the underlying image is
-        asdf= new Rectangle(1000,800,100,100);
+        asdf= new Rectangle(1100,800,100,100);
         tong= new Rectangle(100, 100, 200, 200);
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
+        wall=new Rectangle(1000, 500, 10, 1700);
         p=new Polygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
         BROWN = new Color(139,69,19);
         frame = new JFrame();
@@ -91,7 +93,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         frame.setLayout(null);
         imgBuffer = frame.createImage(SIZE.width, SIZE.height);
         move=true;
-       
+        wool=false;
     }
 
 
@@ -281,7 +283,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 
             }
             try{
-            	Thread.sleep(5);
+            	Thread.sleep(25);
             	}
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -322,6 +324,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         Stroke old = g2d.getStroke();
         g2d.setStroke(new BasicStroke(3));
         g2d.draw(myRect); //actually draws it
+        g2d.setPaint(Color.blue);
+        g2d.draw(wall);
+        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
         g2d.setStroke(old);
         if(isRunning) 
         g2d = (Graphics2D) frame.getGraphics();
@@ -347,16 +352,28 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	dy=(int)asdf.getY();
     	ax=(int)ayush.getX();
     	ay=(int)ayush.getY();
-    	if(((tx-200<dx&&dx<tx+200)&&(ty-200<dy&&dy<ty+200))||((ax-70<dx&&dx<ax+70)&&(ay-70<dy&&dy<ay+70))){
+    	if(((tx-110<dx&&dx<tx+110)&&(ty-110<dy&&dy<ty+110))||((ax-70<dx&&dx<ax+70)&&(ay-70<dy&&dy<ay+70))){
     		isRunning=false;
     	}
+    	
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
     }
     private void ryan(){
     	dg=((int)tong.getX());
     	df=((int)ayush.getY());
     	if(move==true){
-    	df+=20;
-    	dg+=10;
+    	df+=10;
+    	dg+=20;
     	if(dg>1800||df>1000){
     		move=false;
     	}
@@ -366,8 +383,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     		}
     	}
     	else if(move==false){
-        df-=20;
-        dg-=10;
+        df-=10;
+        dg-=20;
         if(dg<0||df<0){
         	move=true;
         }
