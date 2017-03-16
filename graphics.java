@@ -13,8 +13,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public final Dimension SIZE = new Dimension(1920, 1080); //SETS WINDOW DIMENSION
     public JFrame frame;
     private boolean isRunning, isDone;
+    private boolean startgame = false;
     private Image imgBuffer;
-    private BufferedImage stone, grass, pig, dirt;
+    private BufferedImage stone, grass, pig, dirt, chip;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca;
     private boolean change, move, wool;
     @SuppressWarnings("unused")
@@ -25,7 +26,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     int speed=3;
     int laxtx=0;
     int x=laxtx+speed;
-    private int fontSize=100;
+    private int fontSize=300;
+    private Rectangle choice1;
+    private Rectangle choice2;
+    private Rectangle choice3;
     private Rectangle myRect;
     private Point current;
     private Rectangle asdf;
@@ -35,7 +39,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle wall;
     private Polygon p;
     public JFrame window;
-    private int tx, ty, df, dg,dx,dy,ax,ay;
+    private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly;
+    private int dx4, dx5, dy4, dy5;
+    private int Mx, My, Mx2, My2;
     
     
     
@@ -50,9 +56,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 
             stone = ImageIO.read(this.getClass().getResource("5717966_orig.jpg")); //picks the images used
+            chip = ImageIO.read(this.getClass().getResource("sample chip new.png"));
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
-            dirt = ImageIO.read(this.getClass().getResource("sample chip new.png"));
+            dirt = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,500,500));
@@ -66,7 +73,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
 
     public graphics(){
-
+    	dx4 = 1100;
+    	dy4 = 800;
+    	dx5 = 1300;
+    	dy5 = 1000;
+    	choice1= new Rectangle(400,600,1000,100);
+	    choice2=new Rectangle(400,700,1000,100);
+	    choice3=new Rectangle(400,800,1000,100);
         loadImages();
         setChange(true);
         dx=10;
@@ -75,7 +88,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         current = new Point(0,0); //starting point
         myRect = new Rectangle((int)current.getX(), (int)current.getY(), 200, 200);// x,y,h,w to move just change x and y, sets how big the underlying image is
         asdf= new Rectangle(1100,800,100,100);
-        tong= new Rectangle(100, 100, 200, 200);
+        tong= new Rectangle(100, 100, 100, 100);
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
         wall=new Rectangle(1000, 500, 10, 1700);
@@ -112,6 +125,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 
         if(Key == KeyEvent.VK_UP){ // UP
+        	dy4 -= 20;
+            dy5 -= 20;
             if(asdf.getY()>(31)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 20); //how much it moves by
                 next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
@@ -121,6 +136,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(Key == KeyEvent.VK_LEFT){
+        	
+        	dx4 -= 20;
+            dx5 -= 20;
             if(asdf.getX()>10) {
                 asdf.setLocation((int) asdf.getX() - 20, (int) asdf.getY());
                 next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
@@ -130,6 +148,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
+        	dy4 += 20;
+            dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 20);
                 next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
@@ -139,6 +159,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(Key == KeyEvent.VK_RIGHT){
+        	dx4 += 20;
+            dx5 += 20;
             if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
                 asdf.setLocation((int) asdf.getX() + 20, (int) asdf.getY());
                 next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
@@ -192,7 +214,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+    	Mx = e.getXOnScreen();
+    	Mx2 = Mx + 200;
+    	My = e.getYOnScreen();
+    	My2 = My + 200;
     }
 
     @Override
@@ -225,6 +250,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         frame.setVisible(false);
         frame.dispose();
         isRunning = false;
+     
     }
 
     @Override
@@ -266,7 +292,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public void AI(){
     	
     }
-    @Override
+    @Override 
     public void run() {
         while(isRunning){
         	
@@ -289,53 +315,119 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 ie.printStackTrace();
             }
         }
+     
         isDone = true;
     }
-
+    private void startscreen(Graphics2D g2d){
+    	g2d.setColor(Color.black);
+        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+        g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
+        g2d.setColor(Color.green);
+        g2d.draw(choice1);
+        g2d.draw(choice2);
+        g2d.draw(choice3);
+        g2d.drawString("MUSICAL", 300, 300);
+        g2d.drawString("GUACAMOLE", 300,500);
+        g2d.setFont(new Font("chiller",Font.BOLD, 100));
+        g2d.drawString("PLAY", 800, 890);
+        g2d.drawString("CREDITS",740, 690);
+        g2d.drawString("OPTIONS",740,790);
+        g2d = (Graphics2D) frame.getGraphics();
+        if(isRunning) 
+        g2d = (Graphics2D) frame.getGraphics();
+        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+        
+    }
+    private void endscreen(Graphics2D g2d){
+    	g2d.setColor(Color.black);
+    	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+    	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
+    	g2d.setColor(Color.red);
+    	g2d.drawString("onii chan", 300, 300);
+        g2d.drawString("baka", 300,500);
+        if(isRunning){
+        	 g2d = (Graphics2D) frame.getGraphics();
+             g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+        }
+    }
     private void draw() {
 
         
         Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
-        g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
-        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
-        g2d.setColor(BROWN);
-        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
-        g2d.setColor(Color.green);
-        //g2d.drawString("MUSICAL", 800, 110);
-        //g2d.drawString("GUACAMOLE", 800,200);
-        g2d.setPaint(stoneOcta); 
-        g2d.fillRect((int)myRect.getX(), (int)myRect.getY(), (int)myRect.getWidth(), (int)myRect.getHeight()); //fills the rectangle in particular
-        g2d.setColor(Color.BLUE); //sets the color of the outline of the rectangle
-        //g2d.drawPolygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
-        //g2d.setPaint(grassOcta);
-        //g2d.fillPolygon(p);
-        g2d.setPaint(stoneOcta); 
-        //sasag2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
-        //g2d.draw(next);
-        //g2d.drawOval(25, 35, 25, 25);
-        g2d.setPaint(guaca);
-        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
-        g2d.setPaint(Color.red);
-        g2d.draw(asdf);
-        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
-        g2d.draw(tong);
-        g2d.fillRect((int)ayush.getX(), (int)ayush.getY(), (int)ayush.getWidth(), (int)ayush.getHeight());
-        g2d.draw(ayush);
-        Stroke old = g2d.getStroke();
-        g2d.setStroke(new BasicStroke(3));
-        g2d.draw(myRect); //actually draws it
-        g2d.setPaint(Color.blue);
-        g2d.draw(wall);
-        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
-        g2d.setStroke(old);
-        if(isRunning) 
-        g2d = (Graphics2D) frame.getGraphics();
-        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+        if(!startgame){
+        	/*g2d.setColor(Color.black);
+            g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+            g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
+            g2d.setColor(Color.green);
+            g2d.draw(choice1);
+            g2d.draw(choice2);
+            g2d.draw(choice3);
+            g2d.drawString("MUSICAL", 300, 300);
+            g2d.drawString("GUACAMOLE", 300,500);
+            g2d.setFont(new Font("chiller",Font.BOLD, 100));
+            g2d.drawString("PLAY", 800, 890);
+            g2d.drawString("CREDITS",740, 690);
+            g2d.drawString("OPTIONS",740,790);
+            g2d = (Graphics2D) frame.getGraphics();
+            if(isRunning) 
+            g2d = (Graphics2D) frame.getGraphics();
+            g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+            if(Mx > 400 && Mx < 1400 && My > 800 && My < 900){
+            	startgame = true;*/
+        	startscreen(g2d);
+        	if(Mx > 400 && Mx < 1400 && My > 800 && My < 900){
+            	startgame = true;
+            }
+        }
+        else{
+	        g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
+	        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+	        g2d.setColor(BROWN);
+	        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
+	        g2d.setColor(Color.green);
+	        //g2d.drawString("MUSICAL", 800, 110);
+	        //g2d.drawString("GUACAMOLE", 800,200);
+	        g2d.setPaint(stoneOcta); 
+	        //g2d.fillRect((int)myRect.getX(), (int)myRect.getY(), (int)myRect.getWidth(), (int)myRect.getHeight()); //fills the rectangle in particular
+	        g2d.setColor(Color.BLUE); //sets the color of the outline of the rectangle
+	        //g2d.drawPolygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
+	        //g2d.setPaint(grassOcta);
+	        //g2d.fillPolygon(p);
+	        g2d.setPaint(stoneOcta); 
+	        //sasag2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
+	        //g2d.draw(next);
+	        //g2d.drawOval(25, 35, 25, 25);
+	        g2d.setPaint(guaca);
+	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
+	        
+	        g2d.setPaint(Color.black);
+	        g2d.draw(asdf);
+	        g2d.setPaint(Color.red);
+	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
+	        g2d.draw(tong);
+	        g2d.fillRect((int)ayush.getX(), (int)ayush.getY(), (int)ayush.getWidth(), (int)ayush.getHeight());
+	        g2d.draw(ayush);
+	        Stroke old = g2d.getStroke();
+	        g2d.setStroke(new BasicStroke(3));
+	        g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
+	        //g2d.draw(myRect); //actually draws it
+	        g2d.setPaint(Color.blue);
+	        g2d.draw(wall);
+	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
+	        g2d.setStroke(old);
+	        if(isRunning){
+	        g2d = (Graphics2D) frame.getGraphics();
+	        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+	        }
+	       
+        }
+    
         g2d.dispose();
     }
     
     
     private void check(){
+    	Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
        /* Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
         g2d.setColor(Color.red);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
@@ -352,7 +444,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	dy=(int)asdf.getY();
     	ax=(int)ayush.getX();
     	ay=(int)ayush.getY();
-    	if(((tx-110<dx&&dx<tx+110)&&(ty-110<dy&&dy<ty+110))||((ax-70<dx&&dx<ax+70)&&(ay-70<dy&&dy<ay+70))){
+    	if(((tx-90<dx&&dx<tx+90)&&(ty-100<dy&&dy<ty+90))||((ax-100<dx&&dx<ax+100)&&(ay-100<dy&&dy<ay+100))){
+    		endscreen(g2d);
     		isRunning=false;
     	}
     	
@@ -368,7 +461,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     		
     		
     }
-    private void ryan(){
+    private void ryan(){//moves cpu
     	dg=((int)tong.getX());
     	df=((int)ayush.getY());
     	if(move==true){
@@ -379,7 +472,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	}
     	else{
         tong.setLocation(dg, 100);
-        ayush.setLocation(700, df);
+        ayush.setLocation(1800, df);
     		}
     	}
     	else if(move==false){
@@ -390,16 +483,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         else{
         tong.setLocation(dg, 100);
-        ayush.setLocation(700,df);
+        ayush.setLocation(1800,df);
          }
     	 
     }
 
 }
 }
-    
-
-    
-
-  
-
