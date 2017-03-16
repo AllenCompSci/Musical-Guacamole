@@ -74,3 +74,7 @@ $refined hitboxes, tried getting color of each pixel to function as walls, did r
 ## Week 6
 
 @combined the 2 codes between John and Tong, in tongstuff/graphicss
+
+## Week 7
+
+@learned about "tiled" program, tile sets, setting them with properties from Chris and Zach. looked at the overstory github code on implementation to check properties to get wall collision.
