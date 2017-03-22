@@ -80,3 +80,7 @@ $refined hitboxes, tried getting color of each pixel to function as walls, did r
 @learned about "tiled" program, tile sets, setting them with properties from Chris and Zach. looked at the overstory github code on implementation to check properties to get wall collision.
 
 $worked on end screen, fixed hitboxes, started working on layering to set up field of view
+
+## Week 8
+
+@Tried to create map in tiled and do collision
