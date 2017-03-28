@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.Component;
 
 class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public final String TITLE = "Musical Guac";
@@ -15,8 +14,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private boolean isRunning, isDone;
     private boolean startgame = false;
     private Image imgBuffer;
-    private BufferedImage stone, grass, pig, dirt, chip;
-    private TexturePaint stoneOcta, grassOcta, pigs, guaca;
+    private BufferedImage stone, grass, pig, dirt, chip, kulkarni;
+    private TexturePaint stoneOcta, grassOcta, pigs, guaca, kulkarni2;
     private boolean change, move, wool;
     @SuppressWarnings("unused")
     private Color BROWN;
@@ -37,9 +36,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle tong;
     private Rectangle ayush;
     private Rectangle wall;
+    private Rectangle marker0,marker1,marker2,marker3,marker4;
     private Polygon p;
     public JFrame window;
-    private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly;
+    private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
     private int Mx, My, Mx2, My2;
     
@@ -54,7 +54,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
         try {
 
-
+        	kulkarni = ImageIO.read(this.getClass().getResource("Kulkarni_ScienceFair_Award 2017.jpeg")); 
             stone = ImageIO.read(this.getClass().getResource("5717966_orig.jpg")); //picks the images used
             chip = ImageIO.read(this.getClass().getResource("sample chip new.png"));
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
@@ -64,6 +64,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,500,500));
             pigs = new TexturePaint(pig, new Rectangle(0, 0, 1920, 1080)); //sets the image as a paint, and then sets how big the image will be
+            kulkarni2=new TexturePaint(kulkarni, new Rectangle(0,0,1920,1080));
 
 
         } catch (IOException ex) {
@@ -92,6 +93,11 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
         wall=new Rectangle(1000, 500, 10, 1700);
+        marker0=new Rectangle(0,0, 20,20);
+        marker1=new Rectangle(0,0, 20,20);
+        marker2=new Rectangle(0,0, 20,20);
+        marker3=new Rectangle(0,0, 20,20);
+        marker4=new Rectangle(0,0, 20,20);
         p=new Polygon(new int[] {100, 200, 300}, new int[] {100, 50, 100}, 3);
         BROWN = new Color(139,69,19);
         frame = new JFrame();
@@ -201,8 +207,29 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                  myRect.setLocation((int)(600-myRect.getWidth()-10), (int) myRect.getY());
              }
          }
+        else if(Key==KeyEvent.VK_SPACE){
+        	bx=(int)asdf.getX();
+        	by=(int)asdf.getY();
+        	
+        	for(int i=0;i<4;i++){
+        	marker0.setLocation(bx+30,by+30);
+        	
+        	/*if(i==1&&Key==KeyEvent.VK_SPACE){
+        		marker1.setLocation(bx+30,by+30);
+        	}
+        	else if(i==2&&Key==KeyEvent.VK_SPACE){
+        		marker2.setLocation(bx+3,by+3);
+        	}
+        	else if(i==3&&Key==KeyEvent.VK_SPACE){
+        		marker3.setLocation(bx+50,by+50);
+        	}
+        	else if(i==4&&Key==KeyEvent.VK_SPACE){
+        		marker4.setLocation(bx+70,by+70);
+        	}*/
         	
         }
+        }
+    }
     
     
 
@@ -340,19 +367,28 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
     private void endscreen(Graphics2D g2d){
     	g2d.setColor(Color.black);
+    	g2d.setPaint(kulkarni2);
     	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
     	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
     	g2d.setColor(Color.red);
-    	g2d.drawString("onii chan", 300, 300);
-        g2d.drawString("baka", 300,500);
+    	g2d.drawString("game", 300, 300);
+        g2d.drawString("over", 300,500);
         if(isRunning){
         	 g2d = (Graphics2D) frame.getGraphics();
              g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         }
     }
+    private void credits(Graphics2D g2d){
+    	g2d.setColor(Color.black);
+    	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+    	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
+    	g2d.setColor(Color.red);
+    	g2d.drawString("tong", 300, 300);
+        g2d.drawString("johnmatthew", 300,500);
+    }
     private void draw() {
 
-        
+
         Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
         if(!startgame){
         	/*g2d.setColor(Color.black);
@@ -415,6 +451,27 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(wall);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
 	        g2d.setStroke(old);
+	        
+	        g2d.setPaint(Color.yellow);
+	        g2d.draw(marker0);
+	        g2d.fillRect((int)marker0.getX(), (int)marker0.getY(), (int)marker0.getWidth(), (int)marker0.getHeight());
+	        
+	        /*g2d.setPaint(Color.pink);
+	        g2d.draw(marker2);
+	        g2d.fillRect((int)marker2.getX(), (int)marker2.getY(), (int)marker2.getWidth(), (int)marker2.getHeight());
+	        
+	        g2d.setPaint(Color.orange);
+	        g2d.draw(marker3);
+	        g2d.fillRect((int)marker3.getX(), (int)marker3.getY(), (int)marker3.getWidth(), (int)marker3.getHeight());
+	        
+	        g2d.setPaint(Color.blue);
+	        g2d.draw(marker4);
+	        g2d.fillRect((int)marker4.getX(), (int)marker4.getY(), (int)marker4.getWidth(), (int)marker4.getHeight());
+	        
+	        g2d.setPaint(Color.white);
+	        g2d.draw(marker1);
+	        g2d.fillRect((int)marker1.getX(), (int)marker1.getY(), (int)marker1.getWidth(), (int)marker1.getHeight());
+	        */
 	        if(isRunning){
 	        g2d = (Graphics2D) frame.getGraphics();
 	        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
@@ -450,16 +507,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	}
     	
     		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
-    		
+    		    		
     }
     private void ryan(){//moves cpu
     	dg=((int)tong.getX());
