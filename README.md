@@ -86,3 +86,8 @@ $worked on end screen, fixed hitboxes, started working on layering to set up fie
 @Tried to create map in tiled and do collision, researched ways to make collision layers for tilemap
 
 $finished endscreen, tried making field of view in photoshop, made markers for the maze
+
+## Week 9
+
+$Refined markers, refined borders and what happens when the border is reached
+
