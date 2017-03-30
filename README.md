@@ -91,3 +91,4 @@ $finished endscreen, tried making field of view in photoshop, made markers for t
 
 $Refined markers, refined borders and what happens when the border is reached
 
+@Set properties for 2 new layers on the tilemap, uploaded as tilemaptest
