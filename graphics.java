@@ -13,6 +13,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public JFrame frame;
     private boolean isRunning, isDone;
     private boolean startgame = false;
+    private boolean credits=false;
     private Image imgBuffer;
     private BufferedImage stone, grass, pig, dirt, chip, kulkarni;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca, kulkarni2;
@@ -41,7 +42,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public JFrame window;
     private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
-    private int Mx, My, Mx2, My2;
+    private int Mx, My, Mx2, My2, xx,yy;
     
     
     
@@ -129,7 +130,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         Key = e.getKeyCode();
 
 
-
+        if(Key == KeyEvent.VK_ESCAPE){
+        	isRunning=false;
+        	if(Key==KeyEvent.VK_LEFT&&Key==KeyEvent.VK_RIGHT){
+        		isRunning=true;
+        	}
+        }
         if(Key == KeyEvent.VK_UP){ // UP
         	dy4 -= 20;
             dy5 -= 20;
@@ -242,9 +248,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
     	Mx = e.getXOnScreen();
-    	Mx2 = Mx + 200;
+    	//Mx2 = Mx + 200; not sure what this does
     	My = e.getYOnScreen();
-    	My2 = My + 200;
+    	//My2 = My + 200; same thing here
     }
 
     @Override
@@ -378,17 +384,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
              g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         }
     }
-    private void credits(Graphics2D g2d){
-    	g2d.setColor(Color.black);
-    	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
-    	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
-    	g2d.setColor(Color.red);
-    	g2d.drawString("tong", 300, 300);
-        g2d.drawString("johnmatthew", 300,500);
-    }
+ 
     private void draw() {
-
-
         Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
         if(!startgame){
         	/*g2d.setColor(Color.black);
@@ -414,8 +411,26 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	if(Mx > 400 && Mx < 1400 && My > 800 && My < 900){
             	startgame = true;
             }
+        	if(Mx > 0 && Mx < 1800 && My > 600 && My < 700){
+        		credits=true;
+        		startgame=true;
+        	}
+        	
         }
-        else{
+        else if(startgame==true&&credits==true){
+        	g2d.setColor(Color.black);
+        	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+        	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
+        	g2d.setColor(Color.red);
+        	g2d.drawString("tong", 300, 300);
+            g2d.drawString("johnmatthe", 300,500);
+            g2d.drawString("W",300,700);
+            if(isRunning){
+    	        g2d = (Graphics2D) frame.getGraphics();
+    	        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+            }
+        }
+        else if(startgame==true&&credits==false){
 	        g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
 	        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
 	        g2d.setColor(BROWN);
