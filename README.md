@@ -103,3 +103,4 @@ $Got credits screen, got game to exit and pause with button presses
 
 $finished options screen-went back to old research over getting each individual pixel color (SEE WEEK 5) http://stackoverflow.com/questions/8350073/getting-pixel-information-from-the-screen-quickly
 https://kodejava.org/how-do-i-get-the-colour-of-a-screen-pixel/
+http://stackoverflow.com/questions/7168839/how-does-robots-getpixelcolorint-x-int-y-method-work
