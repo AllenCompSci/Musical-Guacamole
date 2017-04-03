@@ -100,3 +100,5 @@ $Got credits screen, got game to exit and pause with button presses
 ## Week 10
 
 @since we don't wanna convert from graphics2D to libgdx just to use tilemaps for wall collision detection, we decided to just get the individual pixels color
+
+$finished options screen-went back to old research over getting each individual pixel color (SEE WEEK 5)
