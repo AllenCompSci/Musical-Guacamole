@@ -99,7 +99,7 @@ $Got credits screen, got game to exit and pause with button presses
 
 ## Week 10
 
-@since we don't wanna convert from graphics2D to libgdx just to use tilemaps for wall collision detection, we decided to just get the individual pixels color. Back to the drawing board:  http://stackoverflow.com/questions/22839618/how-to-get-pixel-color-from-graphics-g
+@since we don't wanna convert from graphics2D to libgdx just to use tilemaps for wall collision detection, we decided to just get the individual pixels color. Back to the drawing board:  http://stackoverflow.com/questions/22839618/how-to-get-pixel-color-from-graphics-g. New plan: draw a map of a maze with walls, set that as an image, get color of pixel of where the character moves, if possible move that way, if not do nothing, then draw black overlay to make a square field of vision instead of a circle (easier).
 
 $finished options screen-went back to old research over getting each individual pixel color (SEE WEEK 5) http://stackoverflow.com/questions/8350073/getting-pixel-information-from-the-screen-quickly
 https://kodejava.org/how-do-i-get-the-colour-of-a-screen-pixel/
