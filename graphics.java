@@ -14,6 +14,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private boolean isRunning, isDone;
     private boolean startgame = false;
     private boolean credits=false;
+    private boolean options=false;
     private Image imgBuffer;
     private BufferedImage stone, grass, pig, dirt, chip, kulkarni;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca, kulkarni2;
@@ -131,10 +132,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 
         if(Key == KeyEvent.VK_ESCAPE){
+        	frame.dispose();
         	isRunning=false;
-        	if(Key==KeyEvent.VK_LEFT&&Key==KeyEvent.VK_RIGHT){
-        		isRunning=true;
-        	}
+        	
         }
         if(Key == KeyEvent.VK_UP){ // UP
         	dy4 -= 20;
@@ -371,6 +371,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         
     }
+   
     private void endscreen(Graphics2D g2d){
     	g2d.setColor(Color.black);
     	g2d.setPaint(kulkarni2);
@@ -415,7 +416,24 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         		credits=true;
         		startgame=true;
         	}
+        	if(Mx > 0 && Mx < 1800 && My > 700 && My < 800){
+        		credits=true;
+        		options=true;
+        		startgame=true;
+        	}
         	
+        }
+        else if(startgame==true&&credits==true&&options==true){
+        	g2d.setColor(Color.black);
+        	g2d.fillRect(0,0,SIZE.width, SIZE.height);
+        	g2d.setColor(Color.ORANGE);
+        	g2d.setFont(new Font("Arial", Font.BOLD, 100));
+        	g2d.draw(choice1);
+        	g2d.drawString("Press escape", 575, 680);
+            g2d = (Graphics2D) frame.getGraphics();
+            if(isRunning) 
+            g2d = (Graphics2D) frame.getGraphics();
+            g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         }
         else if(startgame==true&&credits==true){
         	g2d.setColor(Color.black);
@@ -446,7 +464,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        //g2d.fillPolygon(p);
 	        g2d.setPaint(stoneOcta); 
 	        //sasag2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
-	        //g2d.draw(next);
+	         g2d.draw(next);
 	        //g2d.drawOval(25, 35, 25, 25);
 	        g2d.setPaint(guaca);
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
