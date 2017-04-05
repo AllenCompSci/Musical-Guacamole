@@ -132,11 +132,19 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         int Key;
         Key = e.getKeyCode();
 
-
+        if(startgame==true&&credits==true){
         if(Key == KeyEvent.VK_ESCAPE){
         	frame.dispose();
         	isRunning=false;
-        	
+        }
+        }
+        if(startgame==true&&credits==false){
+        	if(Key == KeyEvent.VK_ESCAPE){
+        		Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
+        		endscreen(g2d);
+        		isRunning=false;
+        		
+            }
         }
         if(Key == KeyEvent.VK_UP){ // UP
         	dy4 -= 20;
@@ -335,6 +343,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
            draw();
            ryan();
            check();
+           
           
             if(change){
           
@@ -470,7 +479,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
 	        
 	        g2d.setPaint(Color.RED);
-	        g2d.draw(asdf);
+	        //g2d.draw(asdf);
 	        g2d.setPaint(Color.red);
 	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
 	        g2d.draw(tong);
@@ -538,6 +547,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     		endscreen(g2d);
     		isRunning=false;
     	}
+
     	
     		
     		    		
