@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.image.BufferedImage;
+import java.awt.Color;
 
 class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     public final String TITLE = "Musical Guac";
@@ -334,8 +336,6 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
            ryan();
            check();
           
-          
-
             if(change){
           
                 setChange(false);
@@ -464,12 +464,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        //g2d.fillPolygon(p);
 	        g2d.setPaint(stoneOcta); 
 	        //sasag2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
-	         g2d.draw(next);
+	        // g2d.draw(next);
 	        //g2d.drawOval(25, 35, 25, 25);
 	        g2d.setPaint(guaca);
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
 	        
-	        g2d.setPaint(Color.black);
+	        g2d.setPaint(Color.RED);
 	        g2d.draw(asdf);
 	        g2d.setPaint(Color.red);
 	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
