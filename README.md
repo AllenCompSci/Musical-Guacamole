@@ -105,4 +105,4 @@ $finished options screen-went back to old research over getting each individual 
 https://kodejava.org/how-do-i-get-the-colour-of-a-screen-pixel/
 http://stackoverflow.com/questions/7168839/how-does-robots-getpixelcolorint-x-int-y-method-work
 
-@http://stackoverflow.com/questions/25761438/understanding-bufferedimage-getrgb-output-values
+$finished all the screens, refined options with buttons, figured out how to insert key presses with certain screens
