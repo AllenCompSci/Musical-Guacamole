@@ -46,7 +46,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
     private int Mx, My, Mx2, My2, xx,yy;
-    
+    private int cA, cB, cC;
     
     
 
@@ -96,7 +96,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         tong= new Rectangle(100, 100, 100, 100);
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
-        wall=new Rectangle(1000, 500, 10, 1700);
+        wall=new Rectangle(1000, 500, 20, 1700);
         marker0=new Rectangle(0,0, 20,20);
         marker1=new Rectangle(0,0, 20,20);
         marker2=new Rectangle(0,0, 20,20);
@@ -151,30 +151,31 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             dy5 -= 20;
             if(asdf.getY()>(31)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 20); //how much it moves by
-                next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
+                //next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
             }
             else {
                 asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
             }
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	
+        	if((((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 - 20), dy5) != -16776961)){
         	dx4 -= 20;
             dx5 -= 20;
             if(asdf.getX()>10) {
                 asdf.setLocation((int) asdf.getX() - 20, (int) asdf.getY());
-                next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
+                //next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
             }
             else {
                 asdf.setLocation(10, (int) asdf.getY());
             }
+        	}
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
         	dy4 += 20;
             dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
                 asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 20);
-                next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
+               // next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
             }
             else {
                 asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
@@ -185,7 +186,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             dx5 += 20;
             if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
                 asdf.setLocation((int) asdf.getX() + 20, (int) asdf.getY());
-                next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
+                //next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
             }
             else {
                 asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
@@ -261,6 +262,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	//Mx2 = Mx + 200; not sure what this does
     	My = e.getYOnScreen();
     	//My2 = My + 200; same thing here
+    	int cC = ((BufferedImage) imgBuffer).getRGB(Mx, My);
+    	String s = "color in: " + cC;
+    	System.out.println(s);
     }
 
     @Override
@@ -479,7 +483,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
 	        
 	        g2d.setPaint(Color.RED);
-	        //g2d.draw(asdf);
+	        g2d.draw(asdf);//hitbox
 	        g2d.setPaint(Color.red);
 	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
 	        g2d.draw(tong);
