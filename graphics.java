@@ -147,7 +147,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         if(Key == KeyEvent.VK_UP){ // UP
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
+        	//if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
         	dy4 -= 20;
             dy5 -= 20;
             if(asdf.getY()>(31)) {
@@ -157,7 +157,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             else {
                 asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
             }
-        	}
+        	//}
         }
         else if(Key == KeyEvent.VK_LEFT){
         	if((((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
@@ -187,7 +187,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	
         }
         else if(Key == KeyEvent.VK_RIGHT){
-        	if((((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
+        	//if((((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
         	dx4 += 20;
             dx5 += 20;
             if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
@@ -197,7 +197,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             else {
                 asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
             }
-        	}
+        	//}
         }
         else if(Key==KeyEvent.VK_W){
         	if(myRect.getY()>(31)) {
