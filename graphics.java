@@ -39,14 +39,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle next;
     private Rectangle tong;
     private Rectangle ayush;
-    private Rectangle wall;
+    private Rectangle wall, wall2;
     private Rectangle marker0,marker1,marker2,marker3,marker4;
     private Polygon p;
     public JFrame window;
     private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
-    private int Mx, My, Mx2, My2, xx,yy;
-    private int cA, cB, cC;
+    private int Mx, My;
     
     
 
@@ -96,7 +95,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         tong= new Rectangle(100, 100, 100, 100);
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
-        wall=new Rectangle(1000, 500, 20, 1700);
+        wall=new Rectangle(1000, 500, 22, 1700);
+        wall2=new Rectangle(750, 300, 1200, 22);
         marker0=new Rectangle(0,0, 20,20);
         marker1=new Rectangle(0,0, 20,20);
         marker2=new Rectangle(0,0, 20,20);
@@ -147,6 +147,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         if(Key == KeyEvent.VK_UP){ // UP
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
         	dy4 -= 20;
             dy5 -= 20;
             if(asdf.getY()>(31)) {
@@ -156,9 +157,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             else {
                 asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
             }
+        	}
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	if((((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 - 20), dy5) != -16776961)){
+        	if((((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
         	dx4 -= 20;
             dx5 -= 20;
             if(asdf.getX()>10) {
@@ -171,6 +173,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	}
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 + 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
         	dy4 += 20;
             dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
@@ -180,8 +183,11 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             else {
                 asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
             }
+        	}
+        	
         }
         else if(Key == KeyEvent.VK_RIGHT){
+        	if((((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
         	dx4 += 20;
             dx5 += 20;
             if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
@@ -191,6 +197,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             else {
                 asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
             }
+        	}
         }
         else if(Key==KeyEvent.VK_W){
         	if(myRect.getY()>(31)) {
@@ -495,7 +502,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        //g2d.draw(myRect); //actually draws it
 	        g2d.setPaint(Color.blue);
 	        g2d.draw(wall);
+	        g2d.draw(wall2);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
+	        g2d.fillRect((int)wall2.getX(), (int)wall2.getY(), (int)wall2.getWidth(), (int)wall2.getHeight());
 	        g2d.setStroke(old);
 	        
 	        g2d.setPaint(Color.yellow);
