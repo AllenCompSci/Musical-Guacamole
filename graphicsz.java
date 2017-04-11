@@ -46,7 +46,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
     private int Mx, My;
-    private int topright,bottomleft,bottomright;
+    private int down, right;
     
     
 
@@ -96,8 +96,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         tong= new Rectangle(100, 100, 100, 100);
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
-        wall=new Rectangle(1000, 500, 22, 1700);
-        wall2=new Rectangle(750, 300, 1200, 22);
+        wall=new Rectangle(1000, 500, 20, 1700);
+        wall2=new Rectangle(740, 300, 1200, 20);
         marker0=new Rectangle(0,0, 20,20);
         marker1=new Rectangle(0,0, 20,20);
         marker2=new Rectangle(0,0, 20,20);
@@ -148,9 +148,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         if(Key == KeyEvent.VK_UP){ // UP
-        	//if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -16777216)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
         	dy4 -= 20;
-            dy5 -= 20;
+           // dy5 -= 20;
             if(asdf.getY()>(31)) {
                 asdf.setLocation(dx4, dy4); //how much it moves by
                 //next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
@@ -159,11 +159,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
             }
         	//}
+        	}
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	if((((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
+        	if((((BufferedImage) imgBuffer).getRGB((dx4-1),dy4) != -16777216)){ //&& (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
         	dx4 -= 20;
-            dx5 -= 20;
+            //dx5 -= 20;
             if(asdf.getX()>10) {
                 asdf.setLocation(dx4, dy4);
                 //next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
@@ -174,9 +175,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	}
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 + 120)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
+        	down=dy4+100;
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (down + 1)) != -16777216)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
         	dy4 += 20;
-            dy5 += 20;
+            //dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
                 asdf.setLocation(dx4,dy4);
                // next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
@@ -188,17 +190,22 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	
         }
         else if(Key == KeyEvent.VK_RIGHT){
-        	//if((((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
+        	right=dx4+100;
+        	if((((BufferedImage) imgBuffer).getRGB((right + 1), dy4) != -16777216)){// && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
         	dx4 += 20;
-            dx5 += 20;
+            //dx5 += 20;
+        	
+        	}
             if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
-                asdf.setLocation((int) asdf.getX() + 20, (int) asdf.getY());
+                asdf.setLocation(dx4, dy4);
                 //next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
             }
             else {
                 asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
             }
         	//}
+        
+        
         }
         /*else if(Key==KeyEvent.VK_W){
         	if(myRect.getY()>(31)) {
@@ -255,6 +262,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	
         }
         }
+        
     }
     
     
@@ -364,7 +372,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 
             }
             try{
-            	Thread.sleep(25);
+            	Thread.sleep(50);
             	}
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -471,7 +479,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(startgame==true&&credits==false){
-	        g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
+	        g2d.setPaint(Color.blue); //sets paint with the already pre set dirty paint
 	        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
 	        g2d.setColor(BROWN);
 	        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
@@ -500,9 +508,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(ayush);
 	        Stroke old = g2d.getStroke();
 	        g2d.setStroke(new BasicStroke(3));
-	        g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
+	        //g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
 	        //g2d.draw(myRect); //actually draws it
-	        g2d.setPaint(Color.blue);
+	        g2d.setPaint(Color.black);
 	        g2d.draw(wall);
 	        g2d.draw(wall2);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
