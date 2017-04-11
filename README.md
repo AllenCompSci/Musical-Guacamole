@@ -109,3 +109,7 @@ https://kodejava.org/how-do-i-get-the-colour-of-a-screen-pixel/
 $finished all the screens, refined options with buttons, figured out how to insert key presses with certain screens
 
 $helped refine hitboxes, tried working on walls
+
+@investigated walls
+
+$helped refine walls and hitboxes
