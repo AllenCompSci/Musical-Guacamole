@@ -113,3 +113,5 @@ $helped refine hitboxes, tried working on walls
 @investigated walls
 
 $helped refine walls and hitboxes
+
+@started enemy class (using rectangles, bufferedimage, and distance formula for distance from player to enemy)
