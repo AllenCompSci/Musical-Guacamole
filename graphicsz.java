@@ -148,7 +148,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         if(Key == KeyEvent.VK_UP){ // UP
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -16777216)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
         	dy4 -= 20;
            // dy5 -= 20;
             if(asdf.getY()>(31)) {
@@ -156,13 +156,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 //next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
             }
             else {
-                asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
+                asdf.setLocation((int) asdf.getX(), 32); //goes back to starting point
             }
         	//}
         	}
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	if((((BufferedImage) imgBuffer).getRGB((dx4-1),dy4) != -16777216)){ //&& (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
+        	if((((BufferedImage) imgBuffer).getRGB((dx4-1),dy4) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
         	dx4 -= 20;
             //dx5 -= 20;
             if(asdf.getX()>10) {
@@ -176,7 +176,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
         	down=dy4+100;
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (down + 1)) != -16777216)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (down + 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
         	dy4 += 20;
             //dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
@@ -184,14 +184,14 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                // next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
             }
             else {
-                asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
+                asdf.setLocation((int) asdf.getX(), 980);
             }
         	}
         	
         }
         else if(Key == KeyEvent.VK_RIGHT){
         	right=dx4+100;
-        	if((((BufferedImage) imgBuffer).getRGB((right + 1), dy4) != -16777216)){// && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB((right + 1), dy4) != -65536 )){// THE COLOR OF BLACK IS -16777216  && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
         	dx4 += 20;
             //dx5 += 20;
         	
@@ -201,12 +201,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 //next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
             }
             else {
-                asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
+                asdf.setLocation(1820, (int) asdf.getY());
             }
-        	//}
+        	}
         
         
-        }
+        
         /*else if(Key==KeyEvent.VK_W){
         	if(myRect.getY()>(31)) {
                 myRect.setLocation((int)myRect.getX(), (int)myRect.getY() - 10); //how much it moves by
@@ -479,7 +479,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(startgame==true&&credits==false){
-	        g2d.setPaint(Color.blue); //sets paint with the already pre set dirty paint
+	        g2d.setPaint(Color.DARK_GRAY); 
 	        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
 	        g2d.setColor(BROWN);
 	        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
@@ -499,7 +499,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.setPaint(guaca);
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
 	        
-	        g2d.setPaint(Color.RED);
+	        g2d.setPaint(Color.black);
 	        g2d.draw(asdf);//hitbox
 	        g2d.setPaint(Color.red);
 	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
@@ -510,7 +510,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.setStroke(new BasicStroke(3));
 	        //g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
 	        //g2d.draw(myRect); //actually draws it
-	        g2d.setPaint(Color.black);
+	        g2d.setPaint(Color.red);
 	        g2d.draw(wall);
 	        g2d.draw(wall2);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
