@@ -141,11 +141,23 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         if(startgame==true&&credits==false){
         	if(Key == KeyEvent.VK_ESCAPE){
+        		
         		Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
-        		endscreen(g2d);
+        		pause(g2d);
         		isRunning=false;
+        	
+        	if(Key==KeyEvent.VK_0){
+        		isRunning=true;
+        	}
+        		
         		
             }
+        }
+        
+        if(((tx-90<dx&&dx<tx+90)&&(ty-100<dy&&dy<ty+90))||((ax-100<dx&&dx<ax+100)&&(ay-100<dy&&dy<ay+100))){
+        	if(Key==KeyEvent.VK_ESCAPE){
+        		frame.dispose();
+        	}
         }
         if(Key == KeyEvent.VK_UP){ // UP
         	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -65536)&&(((BufferedImage) imgBuffer).getRGB((dx4+100), (dy4 - 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
@@ -414,6 +426,16 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	 g2d = (Graphics2D) frame.getGraphics();
              g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         }
+    }
+    private void pause(Graphics2D g2d){
+    	g2d.setColor(Color.cyan);
+    	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
+    	g2d.drawString("game hecking ", 0,540);
+    	g2d.drawString("OVER", 800, 800);
+    	if(isRunning){
+       	 g2d = (Graphics2D) frame.getGraphics();
+            g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+       }
     }
  
     private void draw() {
