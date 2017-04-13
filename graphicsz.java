@@ -148,7 +148,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         if(Key == KeyEvent.VK_UP){ // UP
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -65536)&&(((BufferedImage) imgBuffer).getRGB((dx4+100), (dy4 - 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
         	dy4 -= 20;
            // dy5 -= 20;
             if(asdf.getY()>(31)) {
@@ -162,7 +162,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	}
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	if((((BufferedImage) imgBuffer).getRGB((dx4-1),dy4) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
+        	if((((BufferedImage) imgBuffer).getRGB((dx4-1), dy4) != -65536)&&(((BufferedImage) imgBuffer).getRGB((dx4-1), (dy4+100)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
         	dx4 -= 20;
             //dx5 -= 20;
             if(asdf.getX()>10) {
@@ -176,7 +176,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
         	down=dy4+100;
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (down + 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (down + 1)) != -65536)&&((BufferedImage) imgBuffer).getRGB((dx4+100), (down + 1)) != -65536){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
         	dy4 += 20;
             //dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
@@ -191,7 +191,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         else if(Key == KeyEvent.VK_RIGHT){
         	right=dx4+100;
-        	if((((BufferedImage) imgBuffer).getRGB((right + 1), dy4) != -65536 )){// THE COLOR OF BLACK IS -16777216  && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB((right + 1), dy4) != -65536)&&((BufferedImage) imgBuffer).getRGB((right + 1), (dy4+100)) != -65536 ){// THE COLOR OF BLACK IS -16777216  && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
         	dx4 += 20;
             //dx5 += 20;
         	
