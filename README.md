@@ -115,3 +115,5 @@ $helped refine hitboxes, tried working on walls
 $helped refine walls and hitboxes
 
 @started enemy class (using rectangles, bufferedimage, and distance formula for distance from player to enemy)
+
+$finished walls and hitboxes, finished pause screen-TIME FOR CLASSES
