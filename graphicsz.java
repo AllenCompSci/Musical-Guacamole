@@ -146,13 +146,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         		pause(g2d);
         		isRunning=false;
         	
-        	if(Key==KeyEvent.VK_0){
-        		isRunning=true;
-        	}
+        
         		
         		
             }
         }
+      
         
         if(((tx-90<dx&&dx<tx+90)&&(ty-100<dy&&dy<ty+90))||((ax-100<dx&&dx<ax+100)&&(ay-100<dy&&dy<ay+100))){
         	if(Key==KeyEvent.VK_ESCAPE){
@@ -390,8 +389,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 ie.printStackTrace();
             }
         }
+        
      
-        isDone = true;
     }
     private void startscreen(Graphics2D g2d){
     	g2d.setColor(Color.black);
@@ -418,10 +417,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	g2d.setColor(Color.black);
     	g2d.setPaint(kulkarni2);
     	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
-    	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
+    	g2d.setFont(new Font("arial",Font.BOLD, 200));
+    	g2d.setColor(Color.MAGENTA);
+    	g2d.drawString("holy guacamole", 0, 300);
     	g2d.setColor(Color.red);
-    	g2d.drawString("game", 300, 300);
-        g2d.drawString("over", 300,500);
+    	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
+        g2d.drawString("game over", 300,500);
         if(isRunning){
         	 g2d = (Graphics2D) frame.getGraphics();
              g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
@@ -493,8 +494,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
         	g2d.setColor(Color.red);
         	g2d.drawString("tong", 300, 300);
-            g2d.drawString("johnmatthe", 300,500);
-            g2d.drawString("W",300,700);
+        	g2d.setFont(new Font("arial",Font.BOLD, 250));
+            g2d.drawString("johnmatthew", 300,500);
+            g2d.drawString("",300,700);
             if(isRunning){
     	        g2d = (Graphics2D) frame.getGraphics();
     	        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
@@ -543,22 +545,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(marker0);
 	        g2d.fillRect((int)marker0.getX(), (int)marker0.getY(), (int)marker0.getWidth(), (int)marker0.getHeight());
 	        
-	        /*g2d.setPaint(Color.pink);
-	        g2d.draw(marker2);
-	        g2d.fillRect((int)marker2.getX(), (int)marker2.getY(), (int)marker2.getWidth(), (int)marker2.getHeight());
-	        
-	        g2d.setPaint(Color.orange);
-	        g2d.draw(marker3);
-	        g2d.fillRect((int)marker3.getX(), (int)marker3.getY(), (int)marker3.getWidth(), (int)marker3.getHeight());
-	        
-	        g2d.setPaint(Color.blue);
-	        g2d.draw(marker4);
-	        g2d.fillRect((int)marker4.getX(), (int)marker4.getY(), (int)marker4.getWidth(), (int)marker4.getHeight());
-	        
-	        g2d.setPaint(Color.white);
-	        g2d.draw(marker1);
-	        g2d.fillRect((int)marker1.getX(), (int)marker1.getY(), (int)marker1.getWidth(), (int)marker1.getHeight());
-	        */
+	
 	        if(isRunning){
 	        g2d = (Graphics2D) frame.getGraphics();
 	        g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
@@ -572,16 +559,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     
     private void check(){
     	Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
-       /* Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
-        g2d.setColor(Color.red);
-        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
-        g2d.fillRect(0, 0, SIZE.width, SIZE.height);
-        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
-        g2d.setColor(Color.green);
-        g2d.drawString("MUSICAL", 800, 110);
-        g2d.drawString("GUACAMOLE", 800,200);
-        g2d = (Graphics2D) window.getGraphics();
-        */
+ 
     	tx=(int)tong.getX();
     	ty=(int)tong.getY();
     	dx=(int)asdf.getX();
@@ -592,9 +570,6 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     		endscreen(g2d);
     		isRunning=false;
     	}
-
-    	
-    		
     		    		
     }
     private void ryan(){//moves cpu
