@@ -110,6 +110,8 @@ $finished all the screens, refined options with buttons, figured out how to inse
 
 $helped refine hitboxes, tried working on walls
 
+## Week 11
+
 @investigated walls
 
 $helped refine walls and hitboxes
@@ -117,3 +119,7 @@ $helped refine walls and hitboxes
 @started enemy class (using rectangles, bufferedimage, and distance formula for distance from player to enemy)
 
 $finished walls and hitboxes, finished pause screen-TIME FOR CLASSES
+
+## Week 12
+
+$finished with the screens
