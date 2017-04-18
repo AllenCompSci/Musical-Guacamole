@@ -7,20 +7,22 @@ import javax.imageio.ImageIO;
 
 public class guac {
 	private Rectangle hitbox;
-	private BufferedImage guacamoleImg;
-	public guac(int x, int y){
-		try {
+	//private BufferedImage guacamoleImg;
+	private int direction;//right = 1; up = 2; left = 3; down = 4;
+	private int pathDist;//distance the guacamole moves
+	public guac(int x, int y, int direction, int pathDist){
+		/*try {
 			guacamoleImg = ImageIO.read(this.getClass().getResource("guacamole2new.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		hitbox = new Rectangle(x, y, 100, 100);
 	}
 	
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	}
+	//}
 
 }
