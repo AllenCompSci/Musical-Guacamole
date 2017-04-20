@@ -47,7 +47,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int dx4, dx5, dy4, dy5;
     private int Mx, My;
     private int down, right;
-    private guac one;
+    
     
 
     public void setChange(boolean change) {
@@ -64,7 +64,6 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
             dirt = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
-		guacamoleImg = ImageIO.read(this.getClass().getResource("guacamole2new.jpg"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,500,500));
@@ -257,7 +256,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	by=(int)asdf.getY();
         	
         	for(int i=0;i<4;i++){
-        	marker0.setLocation(bx+30,by+30);
+        	marker0.setLocation(bx+40,by+40);
         	
         	/*if(i==1&&Key==KeyEvent.VK_SPACE){
         		marker1.setLocation(bx+30,by+30);
@@ -393,9 +392,6 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         
      
     }
-	private void guacamole(guac newenemy, int x, int y, int direction, int distance){
-    	newenemy = new guac(x, y, direction, distance);
-    }
     private void startscreen(Graphics2D g2d){
     	g2d.setColor(Color.black);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
@@ -526,7 +522,6 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        //g2d.drawOval(25, 35, 25, 25);
 	        g2d.setPaint(guaca);
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
-	        
 	        g2d.setPaint(Color.black);
 	        g2d.draw(asdf);//hitbox
 	        g2d.setPaint(Color.red);
@@ -561,7 +556,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
     
     
-    private void check(){
+    private void check(){//checks cpu location vs player
     	Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
  
     	tx=(int)tong.getX();
