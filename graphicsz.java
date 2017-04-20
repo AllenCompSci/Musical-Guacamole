@@ -47,6 +47,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int dx4, dx5, dy4, dy5;
     private int Mx, My;
     private int down, right;
+	private guac one;
     
     
 
@@ -64,6 +65,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
             dirt = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
+		guacamoleImg = ImageIO.read(this.getClass().getResource("guacamole2new.jpg"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,500,500));
@@ -391,6 +393,14 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         
      
+    }
+	private void guacamole(guac newenemy, int x, int y, int direction, int distance){
+    	newenemy = new guac(x, y, direction, distance);
+    }
+    private void guacmove(guac newenemy){
+    	if(newenemy.getDirection() == 1){
+    		
+    	}
     }
     private void startscreen(Graphics2D g2d){
     	g2d.setColor(Color.black);
