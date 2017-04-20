@@ -10,6 +10,7 @@ public class guac {
 	//private BufferedImage guacamoleImg;
 	private int direction;//right = 1; up = 2; left = 3; down = 4;
 	private int pathDist;//distance the guacamole moves
+	private int startX, startY, x, y;
 	public guac(int x, int y, int directionIn, int pathDistIn){
 		/*try {
 			guacamoleImg = ImageIO.read(this.getClass().getResource("guacamole2new.jpg"));
@@ -20,11 +21,25 @@ public class guac {
 		hitbox = new Rectangle(x, y, 100, 100);
 		direction = directionIn;
 		pathDist = pathDistIn;
+		startX = x;
+		startY = y;
 	}
-	
-	//public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	//}
-
+	public int getDirection(){
+		return direction;
+	}
+	public int getDist(){
+		return pathDist;
+	}
+	public int getstartX(){
+		return startX;
+	}
+	public int getstartY(){
+		return startY;
+	}
+	public void setX(int xPosition){
+		x = xPosition;
+	}
+	public void setY(int yPosition){
+		y = yPosition;
+	}
 }
