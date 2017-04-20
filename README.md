@@ -123,3 +123,5 @@ $finished walls and hitboxes, finished pause screen-TIME FOR CLASSES
 ## Week 12
 
 $finished with the screens
+
+$refined walls cause its bad-helped omar a lot
