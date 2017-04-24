@@ -127,3 +127,7 @@ $finished with the screens
 $refined walls cause its bad-helped omar a lot
 
 @worked on guac class (the enemy class for creating a lot of guacamoles) and the implementation in graphics
+
+@worked on guac class
+
+$actually finished walls, worked on layering
