@@ -398,8 +398,19 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	newenemy = new guac(x, y, direction, distance);
     }
     private void guacmove(guac newenemy){
-    	if(newenemy.getDirection() == 1){
-    		
+    	if(newenemy.getForward() == true){
+    		if(newenemy.getDirection() == 1){
+    			
+    		}
+    		else if(newenemy.getDirection() == 2){
+    			
+    		}
+    		else if(newenemy.getDirection() == 2){
+    			
+    		}
+    		else if(newenemy.getDirection() == 2){
+	
+    		}
     	}
     }
     private void startscreen(Graphics2D g2d){
