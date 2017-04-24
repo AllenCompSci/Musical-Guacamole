@@ -9,20 +9,23 @@ public class guac {
 	private Rectangle hitbox;
 	//private BufferedImage guacamoleImg;
 	private int direction;//right = 1; up = 2; left = 3; down = 4;
-	private int pathDist;//distance the guacamole moves
+	private int pathDist;//distance the guacamole moves MUST BE MULTIPLE OF 20
 	private int startX, startY, x, y;
-	public guac(int x, int y, int directionIn, int pathDistIn){
+	private boolean forward;//true = going in direction, false = going opposite direction
+	public guac(int xIn, int yIn, int directionIn, int pathDistIn){
 		/*try {
 			guacamoleImg = ImageIO.read(this.getClass().getResource("guacamole2new.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		hitbox = new Rectangle(x, y, 100, 100);
+		hitbox = new Rectangle(x, y, 60, 60);//x and y is point of top left corner, next 2 numbers is width and length
 		direction = directionIn;
 		pathDist = pathDistIn;
-		startX = x;
-		startY = y;
+		startX = xIn;
+		startY = yIn;
+		x = startX;
+		y = startY;
 	}
 	public int getDirection(){
 		return direction;
@@ -41,5 +44,23 @@ public class guac {
 	}
 	public void setY(int yPosition){
 		y = yPosition;
+	}
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
+	public boolean getForward(){
+		return forward;
+	}
+	public boolean switchForward(){
+		if(forward == true){
+			forward = false;
+		}
+		else{
+			forward = true;
+		}
+		return forward;
 	}
 }
