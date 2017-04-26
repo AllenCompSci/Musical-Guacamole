@@ -131,3 +131,5 @@ $refined walls cause its bad-helped omar a lot
 @worked on guac class
 
 $actually finished walls, worked on layering
+
+@worked on the use of guac in graphics class with guacmove and guacamole
