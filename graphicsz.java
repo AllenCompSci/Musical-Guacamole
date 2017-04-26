@@ -401,52 +401,52 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private void guacmove(guac newenemy){
     	if(newenemy.getForward() == true){
     		if(newenemy.getDirection() == 1){
-    			newenemy.setX(newenemy.getX() + 20);
+    			newenemy.setX(newenemy.getX() + 10);
     			if(newenemy.getX() == newenemy.getstartX() + newenemy.getDist()){
     				newenemy.switchForward();
     			}
     		}
     		else if(newenemy.getDirection() == 2){
-    			newenemy.setY(newenemy.getY() + 20);
-    			if(newenemy.getX() == newenemy.getstartY() + newenemy.getDist()){
+    			newenemy.setY(newenemy.getY() + 10);
+    			if(newenemy.getY() == newenemy.getstartY() + newenemy.getDist()){
     				newenemy.switchForward();
     			}
     		}
     		else if(newenemy.getDirection() == 3){
-    			newenemy.setX(newenemy.getX() - 20);
+    			newenemy.setX(newenemy.getX() - 10);
     			if(newenemy.getX() == newenemy.getstartX() - newenemy.getDist()){
     				newenemy.switchForward();
     			}
     		}
     		else if(newenemy.getDirection() == 4){
-    			newenemy.setY(newenemy.getY() - 20);
-    			if(newenemy.getX() == newenemy.getstartY() - newenemy.getDist()){
+    			newenemy.setY(newenemy.getY() - 10);
+    			if(newenemy.getY() == newenemy.getstartY() - newenemy.getDist()){
     				newenemy.switchForward();
     			}
     		}
     	}
     	else if(newenemy.getForward() == false){
     		if(newenemy.getDirection() == 1){
-    			newenemy.setX(newenemy.getX() - 20);
+    			newenemy.setX(newenemy.getX() - 10);
     			if(newenemy.getX() == newenemy.getstartX()){
     				newenemy.switchForward();
     			}
     		}
     		else if(newenemy.getDirection() == 2){
-    			newenemy.setY(newenemy.getY() - 20);
-    			if(newenemy.getX() == newenemy.getstartY()){
+    			newenemy.setY(newenemy.getY() - 10);
+    			if(newenemy.getY() == newenemy.getstartY()){
     				newenemy.switchForward();
     			}
     		}
     		else if(newenemy.getDirection() == 3){
-    			newenemy.setX(newenemy.getX() + 20);
+    			newenemy.setX(newenemy.getX() + 10);
     			if(newenemy.getX() == newenemy.getstartX()){
     				newenemy.switchForward();
     			}
     		}
     		else if(newenemy.getDirection() == 4){
-    			newenemy.setY(newenemy.getY() + 20);
-    			if(newenemy.getX() == newenemy.getstartY()){
+    			newenemy.setY(newenemy.getY() + 10);
+    			if(newenemy.getY() == newenemy.getstartY()){
     				newenemy.switchForward();
     			}
     		}
