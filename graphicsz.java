@@ -48,6 +48,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int Mx, My;
     private int down, right;
     Color c=new Color(100,100,100,100);
+	guac one;
     
     
 
@@ -393,6 +394,63 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         }
         
      
+    }
+	private void guacamole(guac newenemy, int x, int y, int direction, int distance){
+    	newenemy = new guac(x, y, direction, distance);
+    }
+    private void guacmove(guac newenemy){
+    	if(newenemy.getForward() == true){
+    		if(newenemy.getDirection() == 1){
+    			newenemy.setX(newenemy.getX() + 20);
+    			if(newenemy.getX() == newenemy.getstartX() + newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 2){
+    			newenemy.setY(newenemy.getY() + 20);
+    			if(newenemy.getX() == newenemy.getstartY() + newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 3){
+    			newenemy.setX(newenemy.getX() - 20);
+    			if(newenemy.getX() == newenemy.getstartX() - newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 4){
+    			newenemy.setY(newenemy.getY() - 20);
+    			if(newenemy.getX() == newenemy.getstartY() - newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    	}
+    	else if(newenemy.getForward() == false){
+    		if(newenemy.getDirection() == 1){
+    			newenemy.setX(newenemy.getX() - 20);
+    			if(newenemy.getX() == newenemy.getstartX()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 2){
+    			newenemy.setY(newenemy.getY() - 20);
+    			if(newenemy.getX() == newenemy.getstartY()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 3){
+    			newenemy.setX(newenemy.getX() + 20);
+    			if(newenemy.getX() == newenemy.getstartX()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 4){
+    			newenemy.setY(newenemy.getY() + 20);
+    			if(newenemy.getX() == newenemy.getstartY()){
+    				newenemy.switchForward();
+    			}
+    		}
+    	}
     }
     private void startscreen(Graphics2D g2d){
     	g2d.setColor(Color.black);
