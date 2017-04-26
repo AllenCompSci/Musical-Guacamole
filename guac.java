@@ -27,6 +27,11 @@ public class guac {
 		x = startX;
 		y = startY;
 	}
+	public Rectangle getHitbox(){
+		hitbox.x = x;
+		hitbox.y = y;
+		return hitbox;
+	}
 	public int getDirection(){
 		return direction;
 	}
@@ -54,13 +59,12 @@ public class guac {
 	public boolean getForward(){
 		return forward;
 	}
-	public boolean switchForward(){
+	public void switchForward(){
 		if(forward == true){
 			forward = false;
 		}
 		else{
 			forward = true;
 		}
-		return forward;
 	}
 }
