@@ -11,7 +11,7 @@ public class guac {
 	private int direction;//right = 1; up = 2; left = 3; down = 4;
 	private int pathDist;//distance the guacamole moves MUST BE MULTIPLE OF 20
 	private int startX, startY, x, y;
-	private boolean forward;//true = going in direction, false = going opposite direction
+	private boolean forward = true;//true = going in direction, false = going opposite direction
 	public guac(int xIn, int yIn, int directionIn, int pathDistIn){
 		/*try {
 			guacamoleImg = ImageIO.read(this.getClass().getResource("guacamole2new.jpg"));
