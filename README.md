@@ -135,3 +135,7 @@ $actually finished walls, worked on layering
 @worked on the use of guac in graphics class with guacmove and guacamole
 
 $worked on layering, transparent walls, tried invisible enemies
+
+$worked on layering
+
+@implemented guacaomole enemy classes13234yhq53;p@$#
