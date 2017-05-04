@@ -11,11 +11,21 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Created by taylor hudson on 1/5/2017.
  */
-public class driver {
 
+public class driver {
     public static void main(String [] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+    	/*Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    	double width = screenSize.getWidth();
+    	double height = screenSize.getHeight();
+    	String w = "width = " + width;
+    	String h = "height = " + height;
+        System.out.println(w);
+        System.out.println(h);*/
         graphics testCase = new graphics();
+        //Screen dick = new Screen();
+        //dick.vicks();
         (new Thread(testCase)).start();
+        //http://stackoverflow.com/questions/953598/audio-volume-control-increase-or-decrease-in-java
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("mariachi.wav").getAbsoluteFile());
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
@@ -23,12 +33,23 @@ public class driver {
 			  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 		clip.start();
-		gainControl.setValue(6.0206f);
-		gainControl.setValue(4.032f);
-		gainControl.setValue(1.121f);
-		gainControl.setValue(5.2321f);
-		gainControl.setValue(3.992f);
-		gainControl.setValue(-10.0f);
+		while(true){
+			musicProx(testCase, gainControl);
+		}
     }
-
+    public static void musicProx(graphics testCase, FloatControl gainControl){
+		int minDist = testCase.getclosestG();
+		if(minDist > 500){
+			gainControl.setValue(-50.0f);
+		}
+		else if(minDist > 400 && minDist <= 500){
+			gainControl.setValue(-10.0f);
+		}
+		else if(minDist > 200 && minDist <= 400){
+			gainControl.setValue(3.0f);
+		}
+		else if(minDist > 0 && minDist <= 200){
+			gainControl.setValue(6.0f);
+		}
+	}
 }
