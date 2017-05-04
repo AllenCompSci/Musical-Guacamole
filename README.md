@@ -139,3 +139,5 @@ $worked on layering, transparent walls, tried invisible enemies
 $worked on layering
 
 @implemented guacaomole enemy classes13234yhq53;p@$#
+
+@tried to get proximity with music from player to enemy to work
