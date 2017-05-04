@@ -141,3 +141,5 @@ $worked on layering
 @implemented guacaomole enemy classes13234yhq53;p@$#
 
 @tried to get proximity with music from player to enemy to work
+
+$tried getting layering to work, working on photoshop, failed rectangles
