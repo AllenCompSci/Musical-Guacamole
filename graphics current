@@ -39,7 +39,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle next;
     private Rectangle tong;
     private Rectangle ayush;
-    private Rectangle wall, wall2, wall3;
+    private Rectangle wall, wall2, wall3, wall4, wall5, wall6;
     private Rectangle marker0,marker1,marker2,marker3,marker4;
     private Polygon p;
     public JFrame window;
@@ -65,7 +65,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             chip = ImageIO.read(this.getClass().getResource("sample chip new.png"));
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
-            dirt = ImageIO.read(this.getClass().getResource("graphix.gif"));
+            dirt = ImageIO.read(this.getClass().getResource("graphixadf.gif"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,1152,948));
@@ -80,8 +80,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
 
     public graphics(){
-    	dx4 = 1100;
-    	dy4 = 800;
+    	dx4 = 0;
+    	dy4 = 0;
     	dx5 = 1300;
     	dy5 = 1000;
     	choice1= new Rectangle(400,600,1000,100);
@@ -94,13 +94,15 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	    df=100;
         current = new Point(0,0); //starting point
         myRect = new Rectangle((int)current.getX(), (int)current.getY(), 1200, 20);// x,y,h,w to move just change x and y, sets how big the underlying image is
-        asdf= new Rectangle(1100,800,60,60);
+        asdf= new Rectangle(10,10,60,60);
         tong= new Rectangle(100, 100, 60,60);
         ayush=new Rectangle(700,700, 60,60);
         next=new Rectangle(600, 300, 400, 400);
-        wall=new Rectangle(1000, 500, 20, 1700);
-        wall2=new Rectangle(740, 300, 1200, 20);
-        wall3=new Rectangle(0, 700, 12000, 20);
+        wall=new Rectangle(1000, 500, 20, 1200);
+        wall2=new Rectangle(740, 300, 1000, 20);
+        wall3=new Rectangle(100, 700, 200, 20);
+        wall4=new Rectangle(100,0,20,700);
+        wall5=new Rectangle(100,850,1200,20);
         marker0=new Rectangle(0,0, 20,20);
         marker1=new Rectangle(0,0, 20,20);
         marker2=new Rectangle(0,0, 20,20);
@@ -339,7 +341,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 System.exit(0);
             }
             try{
-                Thread.sleep(100);
+                Thread.sleep(10);
             }
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -386,7 +388,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 
             }
             try{
-            	Thread.sleep(50);
+            	Thread.sleep(100);
             	}
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -493,7 +495,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private void pause(Graphics2D g2d){
     	g2d.setColor(Color.cyan);
     	g2d.setFont(new Font("arial",Font.BOLD, fontSize));
-    	g2d.drawString("game hecking ", 0,540);
+    	g2d.drawString("game ", 0,540);
     	g2d.drawString("OVER", 800, 800);
     	if(isRunning){
        	 g2d = (Graphics2D) frame.getGraphics();
@@ -565,7 +567,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(startgame==true&&credits==false){
-	        g2d.setPaint(Color.black); 
+	        g2d.setPaint(Color.DARK_GRAY); 
 	        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
 	        g2d.setPaint(Color.black);
 	        g2d.setColor(BROWN);
@@ -583,7 +585,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        //sasag2d.fillRect((int)next.getX(), (int)next.getY(), (int)next.getWidth(), (int)next.getHeight());
 	        // g2d.draw(next);
 	        //g2d.drawOval(25, 35, 25, 25);
-	        g2d.setColor(Color.black);
+	        g2d.setColor(Color.green);
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
 	        g2d.setPaint(Color.green);
 	        g2d.draw(asdf);//hitbox
@@ -602,16 +604,19 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(wall);
 	        g2d.draw(wall2);
 	        g2d.draw(wall3);
+	        g2d.draw(wall4);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
 	        g2d.fillRect((int)wall2.getX(), (int)wall2.getY(), (int)wall2.getWidth(), (int)wall2.getHeight());
 	        g2d.fillRect((int)wall3.getX(), (int)wall3.getY(), (int)wall3.getWidth(), (int)wall3.getHeight());
+	        g2d.fillRect((int)wall4.getX(), (int)wall4.getY(), (int)wall4.getWidth(), (int)wall4.getHeight());
+	        g2d.fillRect((int)wall5.getX(), (int)wall5.getY(), (int)wall5.getWidth(), (int)wall5.getHeight());
 	        g2d.setStroke(old);
 	        
 	        g2d.setPaint(Color.yellow);
 	        g2d.draw(marker0);
 	        g2d.fillRect((int)marker0.getX(), (int)marker0.getY(), (int)marker0.getWidth(), (int)marker0.getHeight());
 	        
-	        g2d.drawImage(dirt,((int)asdf.getX()+20)-1500,((int)asdf.getY()+20)-844,((int)asdf.getX()+20)+1500,((int)asdf.getY()+20)+844,0,0,3000,1688,null);
+	        g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);
 	        
 	        
 	        if(isRunning){
