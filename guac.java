@@ -1,9 +1,7 @@
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 
 public class guac {
 	private Rectangle hitbox;
@@ -67,4 +65,8 @@ public class guac {
 			forward = true;
 		}
 	}
+	public int getAlarm(int playerX, int playerY){
+		return (int) Math.sqrt(Math.pow(Math.abs(playerX - x), 2) + Math.pow(Math.abs(playerY-y), 2));
+	}
+	
 }
