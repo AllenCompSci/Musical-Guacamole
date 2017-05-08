@@ -134,6 +134,8 @@ $actually finished walls, worked on layering
 
 @worked on the use of guac in graphics class with guacmove and guacamole
 
+## Week 13
+
 $worked on layering, transparent walls, tried invisible enemies
 
 $worked on layering
@@ -143,3 +145,11 @@ $worked on layering
 @tried to get proximity with music from player to enemy to work
 
 $tried getting layering to work, working on photoshop, failed rectangles
+
+@working on enemy class
+
+## Week 14
+
+$finally finished pov, working on the walls of the maze
+
+@worked on music detection/sound effects
