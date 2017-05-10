@@ -18,7 +18,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private boolean credits=false;
     private boolean options=false;
     private Image imgBuffer;
-    private BufferedImage stone, grass, pig, dirt, chip, kulkarni;
+    private BufferedImage stone, grass, pig, dirt, chip, kulkarni, guacamoleImg;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca, kulkarni2;
     private boolean change, move, wool;
     @SuppressWarnings("unused")
