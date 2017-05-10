@@ -18,7 +18,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private boolean credits=false;
     private boolean options=false;
     private Image imgBuffer;
-    private BufferedImage stone, grass, pig, dirt, chip, kulkarni;
+    private BufferedImage stone, grass, pig, dirt, chip, kulkarni,guacamoleImg;
     private TexturePaint stoneOcta, grassOcta, pigs, guaca, kulkarni2;
     private boolean change, move, wool;
     @SuppressWarnings("unused")
@@ -46,6 +46,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
     private int Mx, My;
+    private int down, right;
+    private guac one, two ,thr, four, five, six ,sev, eig, nin;
     
     
 
@@ -63,6 +65,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
             dirt = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
+            guacamoleImg = ImageIO.read(this.getClass().getResource("ddddd.gif"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,500,500));
@@ -95,8 +98,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         tong= new Rectangle(100, 100, 100, 100);
         ayush=new Rectangle(700,700,100,100);
         next=new Rectangle(600, 300, 400, 400);
-        wall=new Rectangle(1000, 500, 22, 1700);
-        wall2=new Rectangle(750, 300, 1200, 22);
+        wall=new Rectangle(1000, 500, 20, 1700);
+        wall2=new Rectangle(740, 300, 1200, 20);
         marker0=new Rectangle(0,0, 20,20);
         marker1=new Rectangle(0,0, 20,20);
         marker2=new Rectangle(0,0, 20,20);
@@ -147,24 +150,25 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         if(Key == KeyEvent.VK_UP){ // UP
-        	//if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 - 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 - 20)) != -16776961)){//doesnt work
         	dy4 -= 20;
-            dy5 -= 20;
+           // dy5 -= 20;
             if(asdf.getY()>(31)) {
-                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() - 20); //how much it moves by
+                asdf.setLocation(dx4, dy4); //how much it moves by
                 //next.setLocation((int)asdf.getX(), (int)asdf.getY()+200);
             }
             else {
-                asdf.setLocation((int) asdf.getX(), 30); //goes back to starting point
+                asdf.setLocation((int) asdf.getX(), 32); //goes back to starting point
             }
         	//}
+        	}
         }
         else if(Key == KeyEvent.VK_LEFT){
-        	if((((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
+        	if((((BufferedImage) imgBuffer).getRGB((dx4-1),dy4) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB((dx4 - 20), dy5) != -16776961)){//blue is -16776961 the color of walls
         	dx4 -= 20;
-            dx5 -= 20;
+            //dx5 -= 20;
             if(asdf.getX()>10) {
-                asdf.setLocation((int) asdf.getX() - 20, (int) asdf.getY());
+                asdf.setLocation(dx4, dy4);
                 //next.setLocation((int)asdf.getX()+200, (int)asdf.getY());
             }
             else {
@@ -173,33 +177,39 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	}
         }
         else if(Key == KeyEvent.VK_DOWN){ // DOWN
-        	if((((BufferedImage) imgBuffer).getRGB(dx4, (dy4 + 20)) != -16776961) && (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
+        	down=dy4+100;
+        	if((((BufferedImage) imgBuffer).getRGB(dx4, (down + 1)) != -65536)){ //&& (((BufferedImage) imgBuffer).getRGB(dx5, (dy5 + 20)) != -16776961)){//doesnt work
         	dy4 += 20;
-            dy5 += 20;
+            //dy5 += 20;
             if(asdf.getY()<(int)(1080-asdf.getHeight()-20)) {
-                asdf.setLocation((int) asdf.getX(), (int) asdf.getY() + 20);
+                asdf.setLocation(dx4,dy4);
                // next.setLocation((int) asdf.getX(), (int) asdf.getY() - 200);
             }
             else {
-                asdf.setLocation((int) asdf.getX(), (int)(950-asdf.getHeight()-10));
+                asdf.setLocation((int) asdf.getX(), 980);
             }
         	}
         	
         }
         else if(Key == KeyEvent.VK_RIGHT){
-        	//if((((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy4) != -16776961) && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
+        	right=dx4+100;
+        	if((((BufferedImage) imgBuffer).getRGB((right + 1), dy4) != -65536 )){// THE COLOR OF BLACK IS -16777216  && (((BufferedImage) imgBuffer).getRGB((dx5 + 20), dy5) != -16776961)){//doesnt work
         	dx4 += 20;
-            dx5 += 20;
+            //dx5 += 20;
+        	
+        	}
             if(asdf.getX()<(int)(1920-asdf.getWidth()-20)) {
-                asdf.setLocation((int) asdf.getX() + 20, (int) asdf.getY());
+                asdf.setLocation(dx4, dy4);
                 //next.setLocation((int) asdf.getX() - 200, (int) asdf.getY());
             }
             else {
-                asdf.setLocation((int)(600-asdf.getWidth()-20), (int) asdf.getY());
+                asdf.setLocation(1820, (int) asdf.getY());
             }
-        	//}
-        }
-        else if(Key==KeyEvent.VK_W){
+        	}
+        
+        
+        
+        /*else if(Key==KeyEvent.VK_W){
         	if(myRect.getY()>(31)) {
                 myRect.setLocation((int)myRect.getX(), (int)myRect.getY() - 10); //how much it moves by
             }
@@ -231,6 +241,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                  myRect.setLocation((int)(600-myRect.getWidth()-10), (int) myRect.getY());
              }
          }
+         */
         else if(Key==KeyEvent.VK_SPACE){
         	bx=(int)asdf.getX();
         	by=(int)asdf.getY();
@@ -253,6 +264,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	
         }
         }
+        
     }
     
     
@@ -362,7 +374,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 
             }
             try{
-            	Thread.sleep(25);
+            	Thread.sleep(50);
             	}
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -371,7 +383,121 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
      
         isDone = true;
     }
+    private void guacamole(guac newenemy, int x, int y, int direction, int distance){
+    	newenemy = new guac(x, y, direction, distance);
+    }
+    private void guacmove(guac newenemy){
+    	if(newenemy.getForward() == true){
+    		if(newenemy.getDirection() == 1){
+    			newenemy.setX(newenemy.getX() + 4);
+    			if(newenemy.getX() == newenemy.getstartX() + newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 2){
+    			newenemy.setY(newenemy.getY() + 4);
+    			if(newenemy.getY() == newenemy.getstartY() + newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 3){
+    			newenemy.setX(newenemy.getX() - 4);
+    			if(newenemy.getX() == newenemy.getstartX() - newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 4){
+    			newenemy.setY(newenemy.getY() - 4);
+    			if(newenemy.getY() == newenemy.getstartY() - newenemy.getDist()){
+    				newenemy.switchForward();
+    			}
+    		}
+    	}
+    	else if(newenemy.getForward() == false){
+    		if(newenemy.getDirection() == 1){
+    			newenemy.setX(newenemy.getX() - 4);
+    			if(newenemy.getX() == newenemy.getstartX()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 2){
+    			newenemy.setY(newenemy.getY() - 4);
+    			if(newenemy.getY() == newenemy.getstartY()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 3){
+    			newenemy.setX(newenemy.getX() + 4);
+    			if(newenemy.getX() == newenemy.getstartX()){
+    				newenemy.switchForward();
+    			}
+    		}
+    		else if(newenemy.getDirection() == 4){
+    			newenemy.setY(newenemy.getY() + 4);
+    			if(newenemy.getY() == newenemy.getstartY()){
+    				newenemy.switchForward();
+    			}
+    		}
+    	}
+    }
+    private void closestG(){
+    	int minDist = 0;
+    	minDist = one.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	if(two.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = two.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(thr.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = thr.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(four.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = four.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(five.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = five.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	String blah = "minDist to player: " + minDist;
+    	/*String blah1 = "one to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	String blah2 = "two to player: " + two.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	String blah3 = "thr to player: " + thr.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	String blah4 = "four to player: " + four.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	String blah5 = "five to player: " + five.getAlarm((int)asdf.getX(), (int)asdf.getY());
+        System.out.println(blah);
+        System.out.println(blah1);
+        System.out.println(blah2);
+        System.out.println(blah3);
+        System.out.println(blah4);
+        System.out.println(blah5);
+        try {
+			Thread.sleep(5);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+    	System.out.println(blah);
+    }
+    public int getclosestG(){
+    	int minDist = 0;
+    	minDist = one.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	if(two.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = two.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(thr.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = thr.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(four.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = four.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(five.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = five.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	return minDist;
+    }
     private void startscreen(Graphics2D g2d){
+    	one = new guac(500, 500, 1, 200);
+    	two = new guac(700, 700, 2, 400);
+    	thr = new guac(0, 0, 2, 200);
+    	four = new guac(40, 40, 3, 20);
+    	five = new guac(900, 900, 1, 100);
     	g2d.setColor(Color.black);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
         g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
@@ -469,7 +595,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             }
         }
         else if(startgame==true&&credits==false){
-	        g2d.setPaint(pigs); //sets paint with the already pre set dirty paint
+	        g2d.setPaint(Color.DARK_GRAY); 
 	        g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
 	        g2d.setColor(BROWN);
 	        g2d.setFont(new Font("chiller", Font.BOLD, fontSize));
@@ -489,7 +615,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.setPaint(guaca);
 	        g2d.fillRect((int)asdf.getX(), (int)asdf.getY(), (int)asdf.getWidth(), (int)asdf.getHeight()); //fills the rectangle in particular 
 	        
-	        g2d.setPaint(Color.RED);
+	        g2d.setPaint(Color.black);
 	        g2d.draw(asdf);//hitbox
 	        g2d.setPaint(Color.red);
 	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
@@ -498,9 +624,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(ayush);
 	        Stroke old = g2d.getStroke();
 	        g2d.setStroke(new BasicStroke(3));
-	        g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
+	        //g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
 	        //g2d.draw(myRect); //actually draws it
-	        g2d.setPaint(Color.blue);
+	        g2d.setPaint(Color.red);
 	        g2d.draw(wall);
 	        g2d.draw(wall2);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
@@ -510,7 +636,20 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.setPaint(Color.yellow);
 	        g2d.draw(marker0);
 	        g2d.fillRect((int)marker0.getX(), (int)marker0.getY(), (int)marker0.getWidth(), (int)marker0.getHeight());
-	        
+	        guacmove(one);
+	        guacmove(two);
+	        guacmove(thr);
+	        guacmove(four);
+	        guacmove(five);
+	        //g2d.draw(one.getHitbox());
+	        g2d.drawImage(guacamoleImg, one.getX(), one.getY(), one.getX() + 60, one.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, two.getX(), two.getY(), two.getX() + 60, two.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, thr.getX(), thr.getY(), thr.getX() + 60, thr.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, four.getX(), four.getY(), four.getX() + 60, four.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, five.getX(), five.getY(), five.getX() + 60, five.getY() + 60, 0, 0, 550, 550, null );
+	        //String blah = "Dist to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
+	        //System.out.println(blah);
+	        closestG();
 	        /*g2d.setPaint(Color.pink);
 	        g2d.draw(marker2);
 	        g2d.fillRect((int)marker2.getX(), (int)marker2.getY(), (int)marker2.getWidth(), (int)marker2.getHeight());
