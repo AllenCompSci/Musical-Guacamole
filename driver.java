@@ -33,22 +33,38 @@ public class driver {
 			  (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 		clip.start();
+		System.out.println("bruh");
 		while(true){
 			musicProx(testCase, gainControl);
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
     }
     public static void musicProx(graphics testCase, FloatControl gainControl){
 		int minDist = testCase.getclosestG();
-		if(minDist > 500){
+		if(minDist > 600){
 			gainControl.setValue(-50.0f);
 		}
+		else if(minDist > 500 && minDist <= 600){
+			gainControl.setValue(-40.0f);
+		}
 		else if(minDist > 400 && minDist <= 500){
+			gainControl.setValue(-30.0f);
+		}
+		else if(minDist > 300 && minDist <= 400){
 			gainControl.setValue(-10.0f);
 		}
-		else if(minDist > 200 && minDist <= 400){
+		else if(minDist > 200 && minDist <= 300){
+			gainControl.setValue(1.0f);
+		}
+		else if(minDist > 100 && minDist <= 200){
 			gainControl.setValue(3.0f);
 		}
-		else if(minDist > 0 && minDist <= 200){
+		else if(minDist > 0 && minDist <= 100){
 			gainControl.setValue(6.0f);
 		}
 	}
