@@ -153,3 +153,7 @@ $tried getting layering to work, working on photoshop, failed rectangles
 $finally finished pov, working on the walls of the maze
 
 @worked on music detection/sound effects
+
+$working on the maze
+
+@finished enemy class and combined codes
