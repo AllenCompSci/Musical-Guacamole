@@ -66,7 +66,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
             grass = ImageIO.read(this.getClass().getResource("cameron.jpg"));
             pig = ImageIO.read(this.getClass().getResource("blackkkk.jpg"));
             dirt = ImageIO.read(this.getClass().getResource("graphixadf.gif"));
-	    guacamoleImg = ImageIO.read(this.getClass().getResource("ddddd.gif"));
+            guacamoleImg = ImageIO.read(this.getClass().getResource("ddddd.gif"));
             grassOcta = new TexturePaint(grass, new Rectangle(0, 0, 90, 60));
             stoneOcta = new TexturePaint(stone, new Rectangle(0, 0, 1920, 1080)); // sets image as paint, sets dimensions
             guaca=new TexturePaint(dirt, new Rectangle(0,0,1152,948));
@@ -347,7 +347,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
                 System.exit(0);
             }
             try{
-                Thread.sleep(10);
+                Thread.sleep(50);
             }
             catch(InterruptedException ie){
                 ie.printStackTrace();
@@ -666,6 +666,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(wall2);
 	        g2d.draw(wall3);
 	        g2d.draw(wall4);
+	        g2d.draw(wall5);
+	        g2d.draw(wall6);
+	        g2d.draw(wall7);
+	        g2d.draw(wall8);
+	        g2d.draw(wall9);
+	        g2d.draw(wall10);
+	        g2d.draw(wall11);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
 	        g2d.fillRect((int)wall2.getX(), (int)wall2.getY(), (int)wall2.getWidth(), (int)wall2.getHeight());
 	        g2d.fillRect((int)wall3.getX(), (int)wall3.getY(), (int)wall3.getWidth(), (int)wall3.getHeight());
