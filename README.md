@@ -157,3 +157,5 @@ $finally finished pov, working on the walls of the maze
 $working on the maze
 
 @finished enemy class and combined codes
+
+$finished the maze
