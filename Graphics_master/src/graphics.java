@@ -390,7 +390,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	
         	
            draw();
-           ryan();
+           //ryan();
            check();
            
           
@@ -481,6 +481,9 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(five.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
     		minDist = five.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	}
+    	if(six.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = six.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
     	String blah = "minDist to player: " + minDist;
     	/*String blah1 = "one to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	String blah2 = "two to player: " + two.getAlarm((int)asdf.getX(), (int)asdf.getY());
@@ -516,14 +519,18 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(five.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
     		minDist = five.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	}
+    	if(six.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = six.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
     	return minDist;
     }
     private void startscreen(Graphics2D g2d){
-   	 one = new guac(500, 500, 1, 200);
+    	one = new guac(500, 500, 1, 200);
     	two = new guac(700, 700, 2, 400);
-    	thr = new guac(345, 987, 2, 200);
-    	four = new guac(275, 745, 3, 20);
+    	thr = new guac(1235, 900, 4, 400);
+    	four = new guac(275, 745, 2, 100);
     	five = new guac(900, 900, 1, 100);
+    	six = new guac(1200, 375, 1, 500);
     	g2d.setColor(Color.black);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
         g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
@@ -558,6 +565,20 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         	 g2d = (Graphics2D) frame.getGraphics();
              g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
         }
+    }
+    private void winscreen(Graphics2D g2d){
+    	g2d.setColor(Color.black);
+    	g2d.setPaint(kulkarni2);
+    	g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
+    	g2d.setFont(new Font("arial",Font.BOLD, 400));
+    	g2d.setColor(Color.MAGENTA);
+    	g2d.drawString("Winner",0,600);
+    	g2d.drawString("Game",200,900);
+    	if(isRunning){
+       	 g2d = (Graphics2D) frame.getGraphics();
+         g2d.drawImage(imgBuffer, 0,  0, SIZE.width, SIZE.height, 0, 0, SIZE.width, SIZE.height, null);
+    	}
+    	
     }
     private void pause(Graphics2D g2d){
     	g2d.setColor(Color.cyan);
@@ -657,13 +678,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.setPaint(Color.green);
 	        g2d.draw(asdf);//hitbox
 	        g2d.setPaint(Color.blue);
-	        g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
-	        g2d.draw(tong);
-	        g2d.fillRect((int)ayush.getX(), (int)ayush.getY(), (int)ayush.getWidth(), (int)ayush.getHeight());
-	        g2d.draw(ayush);
+	        //g2d.fillRect((int)tong.getX(), (int)tong.getY(), (int)tong.getWidth(), (int)tong.getHeight());
+	        //g2d.draw(tong);
+	       // g2d.fillRect((int)ayush.getX(), (int)ayush.getY(), (int)ayush.getWidth(), (int)ayush.getHeight());
+	        //g2d.draw(ayush);
 	        Stroke old = g2d.getStroke();
 	        g2d.setStroke(new BasicStroke(3));
-	        //g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 4000, 3000, null );//uses chip image and keyboard press locations
+	        //g2d.drawImage(chip, dx4, dy4, dx5, dy5, 0, 0, 20000, 16000, null );//uses chip image and keyboard press locations
 	        g2d.setPaint(Color.red);
 	        g2d.fillRect((int)myRect.getX(), (int)myRect.getY(), (int)myRect.getWidth(), (int)myRect.getHeight());
 	        g2d.draw(myRect); //actually draws it
@@ -712,16 +733,16 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        guacmove(thr);
 	        guacmove(four);
 	        guacmove(five);
-	        //g2d.draw(one.getHitbox());
+	        guacmove(six);
 	        g2d.drawImage(guacamoleImg, one.getX(), one.getY(), one.getX() + 60, one.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, two.getX(), two.getY(), two.getX() + 60, two.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, thr.getX(), thr.getY(), thr.getX() + 60, thr.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, four.getX(), four.getY(), four.getX() + 60, four.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, five.getX(), five.getY(), five.getX() + 60, five.getY() + 60, 0, 0, 550, 550, null );
-	        //String blah = "Dist to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
-	        //System.out.println(blah);
+	        g2d.drawImage(guacamoleImg, six.getX(), six.getY(), six.getX() + 60, six.getY() + 60, 0, 0, 550, 550, null );
 	        closestG();
-	        g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);//black thing
+	        
+	        //g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);//black thing
 	        
 	        
 	        if(isRunning){
@@ -737,7 +758,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     
     private void check(){//checks cpu location vs player ALL FOR HITBOXES
     	Graphics2D g2d = (Graphics2D) imgBuffer.getGraphics();
-    	dx=(int)asdf.getX();
+    	/*dx=(int)asdf.getX();
     	dy=(int)asdf.getY();
     	
     	tx=(int)tong.getX();
@@ -749,9 +770,14 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     		endscreen(g2d);
     		isRunning=false;
     	}
+    	*/
     	if(getclosestG() < 40){
     		endscreen(g2d);
     		isRunning = false;
+    	}
+    	if((int)asdf.getX()>1780&&(int)asdf.getY()>900){
+    		winscreen(g2d);
+    		isRunning=false;
     	}
     		    		
     }
@@ -783,4 +809,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     }
 
 }
+   public boolean isRunningDriver(){
+    	if(isRunning == true){
+    		return true;
+    	}
+    	return false;
+   }
 }
