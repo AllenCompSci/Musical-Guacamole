@@ -39,14 +39,14 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private Rectangle next;
     private Rectangle tong;
     private Rectangle ayush;
-    private Rectangle wall, wall2, wall3, wall4, wall5, wall6, wall7,wall8,wall9,wall10,wall11;
+    private Rectangle wall, wall2, wall3, wall4, wall5, wall6, wall7,wall8,wall9,wall10,wall11,wall12,wall13,wall14,wall15,wall16,wall17;
     private Rectangle marker0,marker1,marker2,marker3,marker4;
     private Polygon p;
     public JFrame window;
     private int tx, ty, df, dg,dx,dy,ax,ay,lx,ly,bx,by;
     private int dx4, dx5, dy4, dy5;
     private int Mx, My;
-    private int down, right;
+    private int down, right, minDist;
     Color c=new Color(100,100,100,100);
 	private guac one, two ,thr, four, five, six ,sev, eig, nin;
     
@@ -93,22 +93,28 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
         dx=10;
 	    dy=700;
 	    df=100;
-        myRect = new Rectangle(1200, 0, 25, 300);// x,y,h,w to move just change x and y, sets how big the underlying image is
+        myRect = new Rectangle(1200, 0, 30, 300);// x,y,h,w to move just change x and y, sets how big the underlying image is
         asdf= new Rectangle(10,10,60,60);
         tong= new Rectangle(100, 100, 60,60);
         ayush=new Rectangle(700,700, 60,60);
         next=new Rectangle(600, 300, 400, 400);
-        wall=new Rectangle(1000, 500, 25, 1200);
-        wall2=new Rectangle(740, 300, 1000, 25);
-        wall3=new Rectangle(100, 700, 200, 25);
-        wall4=new Rectangle(100,0,25,700);
-        wall5=new Rectangle(100,850,1200,25);
-        wall6=new Rectangle(100,970,900,25);
-        wall7=new Rectangle(400, 150, 25,700);
-        wall8=new Rectangle(250,150,25,450);
-        wall9=new Rectangle(250,150,170,25);
-        wall10=new Rectangle(400,150,700,25);
-        wall11=new Rectangle(1820,150,25,900);
+        wall=new Rectangle(1000, 500, 30, 1200);
+        wall2=new Rectangle(550, 300, 950, 30);
+        wall3=new Rectangle(100, 700, 200, 30);
+        wall4=new Rectangle(100,0,30,700);
+        wall5=new Rectangle(100,850,900,30);
+        wall6=new Rectangle(100,965,800,30);
+        wall7=new Rectangle(400, 150, 30,700);
+        wall8=new Rectangle(250,150,30,450);
+        wall9=new Rectangle(250,150,170,30);
+        wall10=new Rectangle(400,150,700,30);
+        wall11=new Rectangle(1800,150,30,900);
+        wall12=new Rectangle(550, 300, 30, 450);
+        wall13=new Rectangle(775, 475, 30, 400);
+        wall14=new Rectangle(1200,920,500,30);
+        wall15=new Rectangle(1350, 800,350,30);
+        wall16=new Rectangle(1350,325,30,475);
+        wall17=new Rectangle(1350, 150, 450, 30);
         marker0=new Rectangle(0,0, 20,20);
         marker1=new Rectangle(0,0, 20,20);
         marker2=new Rectangle(0,0, 20,20);
@@ -515,8 +521,8 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private void startscreen(Graphics2D g2d){
    	 one = new guac(500, 500, 1, 200);
     	two = new guac(700, 700, 2, 400);
-    	thr = new guac(0, 0, 2, 200);
-    	four = new guac(40, 40, 3, 20);
+    	thr = new guac(345, 987, 2, 200);
+    	four = new guac(275, 745, 3, 20);
     	five = new guac(900, 900, 1, 100);
     	g2d.setColor(Color.black);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
@@ -673,6 +679,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.draw(wall9);
 	        g2d.draw(wall10);
 	        g2d.draw(wall11);
+	        g2d.draw(wall12);
+	        g2d.draw(wall13);
+	        g2d.draw(wall14);
+	        g2d.draw(wall15);
+	        g2d.draw(wall16);
+	        g2d.draw(wall17);
 	        g2d.fillRect((int)wall.getX(), (int)wall.getY(), (int)wall.getWidth(), (int)wall.getHeight());
 	        g2d.fillRect((int)wall2.getX(), (int)wall2.getY(), (int)wall2.getWidth(), (int)wall2.getHeight());
 	        g2d.fillRect((int)wall3.getX(), (int)wall3.getY(), (int)wall3.getWidth(), (int)wall3.getHeight());
@@ -684,6 +696,12 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.fillRect((int)wall9.getX(), (int)wall9.getY(), (int)wall9.getWidth(), (int)wall9.getHeight());
 	        g2d.fillRect((int)wall10.getX(), (int)wall10.getY(), (int)wall10.getWidth(), (int)wall10.getHeight());
 	        g2d.fillRect((int)wall11.getX(), (int)wall11.getY(), (int)wall11.getWidth(), (int)wall11.getHeight());
+	        g2d.fillRect((int)wall12.getX(), (int)wall12.getY(), (int)wall12.getWidth(), (int)wall12.getHeight());
+	        g2d.fillRect((int)wall13.getX(), (int)wall13.getY(), (int)wall13.getWidth(), (int)wall13.getHeight());
+	        g2d.fillRect((int)wall14.getX(), (int)wall14.getY(), (int)wall14.getWidth(), (int)wall14.getHeight());
+	        g2d.fillRect((int)wall15.getX(), (int)wall15.getY(), (int)wall15.getWidth(), (int)wall15.getHeight());
+	        g2d.fillRect((int)wall16.getX(), (int)wall16.getY(), (int)wall16.getWidth(), (int)wall16.getHeight());
+	        g2d.fillRect((int)wall17.getX(), (int)wall17.getY(), (int)wall17.getWidth(), (int)wall17.getHeight());
 	        g2d.setStroke(old);
 	        
 	        g2d.setPaint(Color.yellow);
@@ -703,7 +721,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        //String blah = "Dist to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
 	        //System.out.println(blah);
 	        closestG();
-	        //g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);
+	        g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);//black thing
 	        
 	        
 	        if(isRunning){
@@ -730,6 +748,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(((tx-50<dx&&dx<tx+50)&&(ty-60<dy&&dy<ty+50))||((ax-60<dx&&dx<ax+60)&&(ay-60<dy&&dy<ay+60))){
     		endscreen(g2d);
     		isRunning=false;
+    	}
+    	if(getclosestG() < 40){
+    		endscreen(g2d);
+    		isRunning = false;
     	}
     		    		
     }
