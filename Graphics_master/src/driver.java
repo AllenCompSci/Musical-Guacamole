@@ -34,7 +34,7 @@ public class driver {
 		gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
 		clip.start();
 		System.out.println("bruh");
-		while(true){
+		while(testCase.isRunningDriver()){
 			musicProx(testCase, gainControl);
 			try {
 				Thread.sleep(1);
@@ -42,7 +42,9 @@ public class driver {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//System.out.println("isRunning");
 		}
+		clip.close();
     }
     public static void musicProx(graphics testCase, FloatControl gainControl){
 		int minDist = testCase.getclosestG();
