@@ -159,3 +159,9 @@ $working on the maze
 @finished enemy class and combined codes
 
 $finished the maze
+
+## Week 15
+
+$finished code, started presentation
+
+@working on more enemies
