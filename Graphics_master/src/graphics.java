@@ -48,7 +48,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     private int Mx, My;
     private int down, right, minDist;
     Color c=new Color(100,100,100,100);
-	private guac one, two ,thr, four, five, six ,sev, eig, nin;
+	private guac one, two ,thr, four, five, six ,sev, eig, nin, ten, ele, twe, thi;
     
     
 
@@ -493,6 +493,18 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(nin.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
     		minDist = nin.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	}
+    	if(ten.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = ten.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(ele.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = ele.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(twe.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = twe.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(thi.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = thi.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
     	String blah = "minDist to player: " + minDist;
     	/*String blah1 = "one to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	String blah2 = "two to player: " + two.getAlarm((int)asdf.getX(), (int)asdf.getY());
@@ -540,6 +552,18 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(nin.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
     		minDist = nin.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	}
+    	if(ten.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = ten.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(ele.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = ele.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(twe.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = twe.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(thi.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = thi.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
     	return minDist;
     }
     private void startscreen(Graphics2D g2d){
@@ -552,6 +576,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	sev = new guac(1100, 220, 4, 400);
     	eig = new guac(1600, 400, 4, 300);
     	nin = new guac(300, 800, 4, 600);
+    	ten = new guac(1400, 600, 1, 440);
+    	ele = new guac(1400, 1000, 4, 200);
+    	twe = new guac(900, 550, 1, 300);
+    	thi = new guac(1720, 400, 2, 600);
     	g2d.setColor(Color.black);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
         g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
@@ -758,6 +786,10 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        guacmove(sev);
 	        guacmove(eig);
 	        guacmove(nin);
+	        guacmove(ten);
+	        guacmove(ele);
+	        guacmove(twe);
+	        guacmove(thi);
 	        g2d.drawImage(guacamoleImg, one.getX(), one.getY(), one.getX() + 60, one.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, two.getX(), two.getY(), two.getX() + 60, two.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, thr.getX(), thr.getY(), thr.getX() + 60, thr.getY() + 60, 0, 0, 550, 550, null );
@@ -767,9 +799,13 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        g2d.drawImage(guacamoleImg, sev.getX(), sev.getY(), sev.getX() + 60, sev.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, eig.getX(), eig.getY(), eig.getX() + 60, eig.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, nin.getX(), nin.getY(), nin.getX() + 60, nin.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, ten.getX(), ten.getY(), ten.getX() + 60, ten.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, ele.getX(), ele.getY(), ele.getX() + 60, ele.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, twe.getX(), twe.getY(), twe.getX() + 60, twe.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, thi.getX(), thi.getY(), thi.getX() + 60, thi.getY() + 60, 0, 0, 550, 550, null );
 	        closestG();
 	        
-	        //g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);//black thing
+	        g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);//black thing
 	        
 	        
 	        if(isRunning){
