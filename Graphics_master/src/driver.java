@@ -51,14 +51,20 @@ public class driver {
 		if(minDist > 600){
 			gainControl.setValue(-50.0f);
 		}
-		else if(minDist > 500 && minDist <= 600){
-			gainControl.setValue(-40.0f);
-		}
-		else if(minDist > 400 && minDist <= 500){
+		else if(minDist > 550 && minDist <= 600){
 			gainControl.setValue(-30.0f);
 		}
-		else if(minDist > 300 && minDist <= 400){
+		else if(minDist > 500 && minDist <= 550){
+			gainControl.setValue(-20.0f);
+		}
+		else if(minDist > 450 && minDist <= 500){
+			gainControl.setValue(-15.0f);
+		}
+		else if(minDist > 400 && minDist <= 450){
 			gainControl.setValue(-10.0f);
+		}
+		else if(minDist > 300 && minDist <= 400){
+			gainControl.setValue(-5.0f);
 		}
 		else if(minDist > 200 && minDist <= 300){
 			gainControl.setValue(1.0f);
