@@ -484,6 +484,15 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(six.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
     		minDist = six.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	}
+    	if(sev.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = sev.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(eig.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = eig.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(nin.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = nin.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
     	String blah = "minDist to player: " + minDist;
     	/*String blah1 = "one to player: " + one.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	String blah2 = "two to player: " + two.getAlarm((int)asdf.getX(), (int)asdf.getY());
@@ -522,15 +531,27 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     	if(six.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
     		minDist = six.getAlarm((int)asdf.getX(), (int)asdf.getY());
     	}
+    	if(sev.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = sev.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(eig.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = eig.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
+    	if(nin.getAlarm((int)asdf.getX(), (int)asdf.getY()) < minDist){
+    		minDist = nin.getAlarm((int)asdf.getX(), (int)asdf.getY());
+    	}
     	return minDist;
     }
     private void startscreen(Graphics2D g2d){
-    	one = new guac(500, 500, 1, 200);
+    	one = new guac(450, 500, 1, 260);
     	two = new guac(700, 700, 2, 400);
     	thr = new guac(1235, 900, 4, 400);
-    	four = new guac(275, 745, 2, 100);
-    	five = new guac(900, 900, 1, 100);
+    	four = new guac(200, 745, 2, 140);
+    	five = new guac(900, 900, 1, 240);
     	six = new guac(1200, 375, 1, 500);
+    	sev = new guac(1100, 220, 4, 400);
+    	eig = new guac(1600, 400, 4, 300);
+    	nin = new guac(300, 800, 4, 600);
     	g2d.setColor(Color.black);
         g2d.fillRect(0, 0, SIZE.width, SIZE.height); //actually fills screen
         g2d.setFont(new Font("chiller",Font.BOLD, fontSize));
@@ -734,12 +755,18 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 	        guacmove(four);
 	        guacmove(five);
 	        guacmove(six);
+	        guacmove(sev);
+	        guacmove(eig);
+	        guacmove(nin);
 	        g2d.drawImage(guacamoleImg, one.getX(), one.getY(), one.getX() + 60, one.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, two.getX(), two.getY(), two.getX() + 60, two.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, thr.getX(), thr.getY(), thr.getX() + 60, thr.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, four.getX(), four.getY(), four.getX() + 60, four.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, five.getX(), five.getY(), five.getX() + 60, five.getY() + 60, 0, 0, 550, 550, null );
 	        g2d.drawImage(guacamoleImg, six.getX(), six.getY(), six.getX() + 60, six.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, sev.getX(), sev.getY(), sev.getX() + 60, sev.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, eig.getX(), eig.getY(), eig.getX() + 60, eig.getY() + 60, 0, 0, 550, 550, null );
+	        g2d.drawImage(guacamoleImg, nin.getX(), nin.getY(), nin.getX() + 60, nin.getY() + 60, 0, 0, 550, 550, null );
 	        closestG();
 	        
 	        //g2d.drawImage(dirt,((int)asdf.getX()-70)-2520,((int)asdf.getY()-70)-900,((int)asdf.getX()+20)+2520,((int)asdf.getY()+110)+900,0,0,5040,1800,null);//black thing
@@ -771,7 +798,7 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
     		isRunning=false;
     	}
     	*/
-    	if(getclosestG() < 40){
+    	if(getclosestG() < 60){
     		endscreen(g2d);
     		isRunning = false;
     	}
