@@ -698,3 +698,4 @@ class graphics implements Runnable, KeyListener, WindowListener, MouseListener {
 
 }
 }
+/* fantastic
